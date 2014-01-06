@@ -21,14 +21,14 @@ module.exports = function (grunt) {
         // Project settings
         yeoman: {
             // Configurable paths
-            app: '.',
+            app: '<%= proyName %>',
             dist: 'dist'
         },
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             js: {
-                files: ['<%%= yeoman.app %>/scripts/{,*/}*.js'],
+                files: ['scripts/{,*/}*.js'],
                 tasks: ['jshint'],
                 options: {
                     livereload: true

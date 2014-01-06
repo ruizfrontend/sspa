@@ -1,9 +1,9 @@
 {
-  "name": "generator-lab",
+  "name": "generator-lab2",
   "version": "0.1.1",
   "description": "Scaffold un proyecto para el lab",
   "license": "BSD",
-  "repository": "yeoman/generator-lab",
+  "repository": "yeoman/generator-lab2",
   "author": "lab.rtve.es",
   "main": "app/index.js",
   "engines": {
