@@ -1,17 +1,14 @@
 {
-  "name": "generator-lab2",
+  "name": "generator-lab",
   "version": "0.1.1",
   "description": "Scaffold un proyecto para el lab",
   "license": "BSD",
-  "repository": "yeoman/generator-lab2",
-  "author": "lab.rtve.es",
+  "repository": "https://bitbucket.org/ruizfrontend/generator-lab/",
+  "author": "ruizfrontend@gmail.com",
   "main": "app/index.js",
   "engines": {
     "node": ">=0.8.0",
     "npm": ">=1.2.10"
-  },
-  "scripts": {
-    "test": "mocha --reporter spec"
   },
   "files": [
     "app"
@@ -32,10 +29,6 @@
     "chalk": "~0.4.0"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0",
-    "generator-mocha": ">=0.1.0"
-  },
-  "devDependencies": {
-    "mocha": "*"
+    "yo": ">=1.0.0"
   }
 }
