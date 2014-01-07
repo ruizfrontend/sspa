@@ -10,7 +10,9 @@ module.exports = function(grunt) {
         options: {              // Target options
           sassDir: 'sass',
           cssDir: 'css',
-          environment: 'production'
+          environment: 'production',
+          imagesDir: './img',
+          relativeAssets: true
         }
       },
     },
