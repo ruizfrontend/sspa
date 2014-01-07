@@ -5,17 +5,19 @@
     "bitwise": true,
     "camelcase": true,
     "curly": true,
-    "eqeqeq": true,
+    "eqeqeq": false,
     "immed": true,
-    "indent": 4,
+    "indent": 2,
     "latedef": true,
     "newcap": true,
     "noarg": true,
     "quotmark": "single",
     "undef": true,
-    "unused": true,
+    "unused": false,
     "strict": true,
     "trailing": true,
     "smarttabs": true,
-    "jquery": true
+    "jquery": true,
+    "radix": true,
+    "-W065": true
 }
