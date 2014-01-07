@@ -22,7 +22,8 @@ module.exports = function(grunt) {
     // additional tasks can operate on them
     useminPrepare: {
         options: {
-            dest: '../<%= finalFolder %>'
+            dest: '../<%= finalFolder %>',
+            root: './'
         },
         html: 'templates/base.html'
     },
