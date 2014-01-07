@@ -46,8 +46,9 @@
   <!-- endbuild -->
 
   <link rel="stylesheet" href="http://www.rtve.es/css/tipografias.css">
-
-  <script type="text/javascript" src="//www.rtve.es/js/mushrooms/rtve_mushroom.js" ></script>
+  <?php if(!$properties['DEV']): // activamos traking en producctión ?>
+    <script type="text/javascript" src="//www.rtve.es/js/mushrooms/rtve_mushroom.js" ></script>
+  <?php endif; ?>
 </head>
 
 <body>
@@ -94,7 +95,7 @@
 
       <?php // SET SOME JS DEFAULTS BASED IN 'entorno.properties' ?>
     if(labTools && labTools.url) {
-      labTools.url.data.baseUrl = "<?php echo $properties['FINALPATH']; ?>";
+      labTools.url.data.baseUrl = "<?php echo $properties['DEV'] ? $properties['DEVPATH'] : $properties['FINALPATH']; ?>";
       labTools.url.ga = false;
     }
     if(labTools && labTools.console) labTools.console.data.log = "<?php echo $properties['LOG']; ?>";
