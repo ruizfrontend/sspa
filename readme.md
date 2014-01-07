@@ -1,75 +1,71 @@
-# Web app generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-webapp.png?branch=master)](http://travis-ci.org/yeoman/generator-webapp) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+﻿# Lab app generator [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-Yeoman generator that scaffolds out a front-end web app.
+##Yeoman generator para los proyectos del lab.
 
+Este generador crea una estructura de proyectos para un proyecto genérico del lab.
 
-## Features
+El proyecto se generará en la carpeta en la que estés, y esta será tu carpeta de desarrollo, con su index.html y todo eso. A partir de esta carpeta se generarán las carpetas scss, js, img, fonts.... además de todos los archivos de configuración habituales.
 
-* CSS Autoprefixing *(new)*
-* Built-in preview server with LiveReload
-* Automagically compile CoffeeScript & Compass
-* Automagically lint your scripts
-* Automagically wire up your Bower components with [bower-install](#third-party-dependencies).
-* Awesome Image Optimization (via OptiPNG, pngquant, jpegtran and gifsicle)
-* Mocha Unit Testing with PhantomJS
-* Optional - Twitter Bootstrap for SASS
-* Optional - Leaner Modernizr builds *(new)*
+Tembién se generará la configuración para **grunt** con 4 tareas configiuradas:
 
-For more information on what `generator-webapp` can do for you, take a look at the [Grunt tasks](https://github.com/yeoman/generator-webapp/blob/master/app/templates/_package.json) used in our `package.json`.
+- **watch**: tarea para el procesado dinámico de los scsss
+- **bower-install**: tarea para instalar dependencias (ver sección 'Third-Party Dependencies')
+- **compile**: genera la versión de producción del proyecto (sin imágenes)
+- **compileimg**: genera la versión de producción del proyecto (con imágenes)
 
+###Los proyectos incluyen: 
 
-## Getting Started
+- Las tareas grunt comentadas antes, configuradas para cada tarea especificado, incluyendo minificación del código css y html, compresión de las imágenes, 
+- Estructura de **git** lista para darle un git init y comenzar a comitear.
+- Un **.htaccess** básico.
+- Un **readme.md** básico.
 
-- Install: `npm install -g generator-webapp`
-- Run: `yo webapp`
-- Run `grunt` for building and `grunt serve` for preview [*](#serve-note)
+Opcionalmente incluirán según se elija en el proceso de instalación:
 
+- Las librerías **labTools** que utilizamos en el laboratorio.
+- El **core de PHP** habitual del lab.
+- Librerías externas listas para ser instaladas con **bower**.
+
+## Instalación del generador
+
+Como el generador no es público (ej. github), tenemos que instalarlo en local. Para ello clonamos el proyecto en una **carpeta con el nombre generator-NOMBREGENERATOR**, siendo NOMBREGENERATOR el nombre que yeoman buscará para ejecutarlo. 
+
+Una vez clonado, y dentro de la carpeta, cargamos las dependencias de npm y vinculamos el proyecto:
+
+```
+  npm install
+  npm link
+```
+
+Tras esto deberíamos ser capaces de generar un proyecto nuevo usando desde una carpeta vacia
+
+```
+  yo NOMBREGENERATOR
+```
+
+## Post instalacción
+
+Una vez generado el proyecto, siguiendo los pasos solicitados por **yeoman**, deberíamos tener todos los archivos necesarios para nuestro proyecto. Sin embargo antes de poder compilarlo necesitamos generar por lo menos una vez nuestros archivos dinámicos. Para ello ejecutamos los comandos
+
+```
+  grunt bower-install
+  grunt watch
+```
+
+Una vez hecho esto, grunt esperará a que se cambien los archivos de la carpeta sass, y en cuanto detecte cambios los compilará en la carpeta css. Una vez procesado por primera vez y creada la carpeta css, ya tenemos todo lo necesario para generar nuestras versiones de producción con uno de los dos comandos:
+
+```
+  grunt compile
+  grunt compileimg
+```
 
 #### Third-Party Dependencies
 
 *(HTML/CSS/JS/Images/etc)*
 
-Third-party dependencies are managed with [bower-install](https://github.com/stephenplusplus/grunt-bower-install). Add new dependencies using **Bower** and then run the **Grunt** task to load them:
+Añadimos librerías externas con [bower-install](https://github.com/stephenplusplus/grunt-bower-install): 
 
 ```bash
   bower install --save jquery
   grunt bower-install
 ```
-
-This works if the package author has followed the [Bower spec](https://github.com/bower/bower.json-spec). If the files are not automatically added to your index.html, check with the package's repo for support and/or file an issue with them to have it updated.
-
-To manually add dependencies, `bower install depName --save` to get the files, then add a `script` or `style` tag to your `index.html` or an other appropriate place.
-
-
-#### Grunt Serve Note
-
-Note: `grunt server` was previously used for previewing in earlier versions of the project and is being deprecated in favor of `grunt serve`.
-
-
-## Options
-
-* `--skip-install`
-
-  Skips the automatic execution of `bower` and `npm` after scaffolding has finished.
-
-* `--test-framework=<framework>`
-
-  Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
-
-* `--coffee`
-
-  Add support for [CoffeeScript](http://coffeescript.org/).
-
-
-## Contribute
-
-See the [contributing docs](https://github.com/yeoman/yeoman/blob/master/contributing.md)
-
-Note: We are regularly asked whether we can add or take away features. If a change is good enough to have a positive impact on all users, we are happy to consider it.
-
-If not, `generator-webapp` is fork-friendly and you can always maintain a custom version which you `npm install && npm link` to continue using via `yo webapp` or a name of your choosing.
-
-
-## License
-
-[BSD license](http://opensource.org/licenses/bsd-license.php)
