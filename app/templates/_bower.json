@@ -20,12 +20,10 @@
     "modernizr": "~2.6.2",<% } %><% if (libsD3) { %>
     "d3": "",<% } %><% if (libsMomentjs) { %>
     "momentjs": "",<% } %><% if (libsHammer) { %>
-    "hammerjs": "",<% } %><% if (includeModernizr) { %>
-    "modernizr": "~2.6.2",<% } %><% if (libsPopcorn) { %>
+    "hammerjs": "",<% } %><% if (libsPopcorn) { %>
     "popcornjs": "",<% } %><% if (libsMousewheel) { %>
     <% } %><% if (libsSnap) { %>
-    "Snap.svg": "",<% } %><% if (libsD3) { %>
-    "d3": "",<% } %>
+    "Snap.svg": "",<% } %>
     "jquery": "~1.10.2"
   },
   "devDependencies": {}

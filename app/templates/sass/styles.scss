@@ -1,0 +1,16 @@
+@import "compass/utilities";
+@import "compass/reset";
+@import "compass/css3/box-sizing";
+
+#main { color: #ccc; 
+  .cosa { color: blue; }
+}
+ 
+#content-box {
+  @include box-sizing(content-box);
+  color: red;
+}
+ 
+#border-box {
+  @include box-sizing(border-box);
+}

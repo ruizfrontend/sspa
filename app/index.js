@@ -9,24 +9,6 @@ var chalk = require('chalk');
 var AppGenerator = module.exports = function Appgenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
-  // setup the test-framework property, Gruntfile template will need this
-  this.testFramework = options['test-framework'] || 'mocha';
-  this.coffee = options.coffee;
-
-  // for hooks to resolve on mocha by default
-  options['test-framework'] = this.testFramework;
-
-  // resolved to mocha by default (could be switched to jasmine for instance)
-  this.hookFor('test-framework', {
-    as: 'app',
-    options: {
-      options: {
-        'skip-install': options['skip-install-message'],
-        'skip-message': options['skip-install']
-      }
-    }
-  });
-
   this.options = options;
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -40,32 +22,28 @@ AppGenerator.prototype.askFor = function askFor() {
   // welcome message
   if (!this.options['skip-welcome-message']) {
     console.log(this.yeoman);
-    console.log(chalk.magenta('Prepararemos una super app con less, compass, y los modulos de labtools que elijas.'));
+    console.log(chalk.magenta('\n\
+    Bienvenido al generador de proyectos de lab RTVE.es\n\
+    ---------------------------------------------------\n\
+    \n\
+    Se generará la estructura básica de proyecto en la carpeta actual\n\
+    además se configurará grunt para permitir compilar el proyecto \n\
+    en la carpeta de destino que desee. \n \n'));
   }
 
   var prompts = [{
     type: 'input',
-    name: 'proyName',
-    message: 'Escribe el nompre para el proyecto (prefijo corto y tal)',
-    validate: function(input) { return(input.indexOf(' ') == -1); },
-    default: 'newLabProy'
-  },{
-    type: 'input',
-    name: 'proyDevName',
-    message: 'Escribe el nompre para la carpeta de desarrollo',
-    validate: function(input) { return(input.indexOf(' ') == -1); },
-    default: 'newLabProy-dev'
-  },{
-    type: 'input',
-    name: 'proyProdName',
-    message: 'Escribe el nompre para la carpeta final',
+    name: 'finalFolder',
+    message: '\
+    Escriba la carpeta final para el proyecto \n\
+    (la que grunt usará para \'compilar\' el proyecto)',
     validate: function(input) { return(input.indexOf(' ') == -1); },
     default: 'newLabProy'
   },{
     type: 'confirm',
     name: 'corePhp',
     message: '¿Deseas incluir el core PHP del lab?',
-    default: false
+    default: true
   },{
     type: 'checkbox',
     name: 'featLab',
@@ -90,15 +68,11 @@ AppGenerator.prototype.askFor = function askFor() {
       name: 'lbt-url',
       value: 'lbtUrl',
       checked: false
-    }, {
-      name: 'lbt-fullscreen',
-      value: 'lbtFullscreen',
-      checked: false
     }]
   },{
     type: 'checkbox',
     name: 'featLibs',
-    message: '¿Deseas incluir alguna otra librería externa?',
+    message: '¿Deseas incluir alguna librería externa? (jQuery se incluye por defecto)',
     choices: [{
       name: 'modernizr',
       value: 'includeModernizr',
@@ -131,9 +105,7 @@ AppGenerator.prototype.askFor = function askFor() {
   }];
 
   this.prompt(prompts, function (answers) {
-    this.proyName = answers.proyName;
-    this.proyDevName = answers.proyDevName;
-    this.proyProdName = answers.proyProdName;
+    this.finalFolder = answers.finalFolder;
 
     var featLab = answers.featLab;
     var featLibs = answers.featLibs;
@@ -156,7 +128,6 @@ AppGenerator.prototype.askFor = function askFor() {
     this.lbtMedia = hasFeatureLab('lbtMedia');
     this.lbtTimeline = hasFeatureLab('lbtTimeline');
     this.lbtUrl = hasFeatureLab('lbtUrl');
-    this.lbtFullscreen = hasFeatureLab('lbtFullscreen');
 
     cb();
   }.bind(this));
@@ -189,40 +160,52 @@ AppGenerator.prototype.editorConfig = function editorConfig() {
 };
 
 AppGenerator.prototype.corePHP = function corePHP() {
-  this.mkdir('core');
+  this.mkdir('corephp');
 
-  this.directory('core', 'core');
+  this.directory('corephp', 'corephp');
 };
 
 AppGenerator.prototype.mainStylesheet = function mainStylesheet() {
-  var css = 'main.' + (this.compassBootstrap ? 's' : '') + 'css';
-  this.copy(css, 'app/styles/' + css);
+  this.mkdir('sass');
+
+  this.directory('sass', 'sass');
 };
 
-AppGenerator.prototype.writeIndex = function writeIndex() {
-  var bs;
+AppGenerator.prototype.resto = function resto() {
+  this.copy('index.php', 'index.php');
+  this.copy('.htaccess', '.htaccess');
+  this.copy('readme.md', 'readme.md');
+  this.copy('entorno.properties', 'entorno.properties');
+  
+  this.mkdir('templates');
 
-  this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
-  this.indexFile = this.engine(this.indexFile, this);
+  this.copy('templates/html.html', 'templates/html.html');
+  this.template('templates/base.html', 'templates/base.html');
 
-  this.indexFile = this.appendFiles({
-    html: this.indexFile,
-    fileType: 'js',
-    optimizedPath: 'scripts/main.js',
-    sourceFileList: ['scripts/main.js'],
-    searchPath: '{app,.tmp}'
-  });
+  this.mkdir('js');
+
+  this.copy('js/base.js', 'js/base.js');
+
+  this.mkdir('img');
+
+  this.directory('img', 'img');
+
+  this.mkdir('font');
+
+  this.directory('font', 'font');
 };
 
-AppGenerator.prototype.app = function app() {
-  this.mkdir('app');
-  this.mkdir('app/scripts');
-  this.mkdir('app/styles');
-  this.mkdir('app/images');
-  this.write('app/index.html', this.indexFile);
-
-  this.write('app/scripts/main.js', 'console.log(\'\\\'Allo \\\'Allo!\');');
-};
+AppGenerator.prototype.labTools = function labTools() {
+  if(this.lbtConsole) this.copy('labtools/lbt-console.js', 'js/lbt-console.js');
+  if(this.lbtFullscreen) this.copy('labtools/lbt-fullscreen.js', 'js/lbt-fullscreen.js');
+  if(this.lbtMedia) this.copy('labtools/lbt-media.js', 'js/lbt-media.js');
+  if(this.lbtTimeline) {
+    this.copy('labtools/lbt-timeline.js', 'js/lbt-timeline.js');
+    this.copy('labtools/lbt-timeline.css', 'js/lbt-timeline.css');
+  }
+  if(this.lbtUrl) this.copy('labtools/lbt-url.js', 'js/lbt-url.js');
+  if(this.lbtConsole) this.copy('labtools/lbt-console.js', 'js/lbt-console.js');
+}
 
 AppGenerator.prototype.install = function () {
   if (this.options['skip-install']) {
