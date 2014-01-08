@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     compass: {
-      dist: {                   // Target
+      min: {
         options: {              // Target options
           sassDir: 'sass',
           cssDir: 'css',
@@ -15,6 +15,15 @@ module.exports = function(grunt) {
           relativeAssets: true
         }
       },
+      full: {
+        options: {              // Target options
+          sassDir: 'sass',
+          outputStyle: 'nested',
+          cssDir: 'css',
+          imagesDir: './img',
+          relativeAssets: true
+        }
+      }
     },
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
@@ -37,7 +46,7 @@ module.exports = function(grunt) {
     watch: {
         compass: {
             files: ['sass/{,*/}*.{scss,sass}'],
-            tasks: ['compass']
+            tasks: ['compass:full']
         }
     },
 
@@ -134,9 +143,9 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('compile', ['compass', 'useminPrepare','concat',
+  grunt.registerTask('compile', ['compass:min', 'useminPrepare','concat',
     'uglify', 'copy', 'replace', 'cssmin','modernizr',  'usemin']);
-  grunt.registerTask('compileimg', ['compass', 'useminPrepare','concat',
+  grunt.registerTask('compileimg', ['compass:min', 'useminPrepare','concat',
     'uglify', 'imagemin', 'copy', 'replace', 'cssmin', 'modernizr', 'usemin']);
   grunt.registerTask('watch', ['watch']);
   grunt.registerTask('bower-install', ['bower-install']);
