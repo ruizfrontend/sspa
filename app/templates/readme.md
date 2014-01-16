@@ -17,6 +17,27 @@ El proyecto incluye 4 tareas **grunt** configiuradas:
 - **compile**: genera la versión de producción del proyecto (sin imágenes)
 - **compileimg**: genera la versión de producción del proyecto (con imágenes)
 
+##Instalación
+
+Una vez descargado el repositorio, hace falta instalar todas las dependencias.
+Para ello necesitamos *NPM* y *bower* (no iríamos muy lejos sin ellos) y ejecutar la instalación mediante:
+
+```bash
+  npm install
+  bower install
+```
+
+Finalmente hace falta hacer un primer renderizado del sass para que se genere un styles.css útil.
+Para ello basta con ejecutar:
+
+```bash
+  grunt sass
+```
+
+Y ya podremos lanzar el proyecto en el navegador desde la carpeta de instalación.
+
+Si te dió algún problema consulte con un especialista
+
 #### Third-Party Dependencies
 
 *(HTML/CSS/JS/Images/etc)*

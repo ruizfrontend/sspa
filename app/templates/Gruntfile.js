@@ -150,6 +150,7 @@ module.exports = function(grunt) {
     'uglify', 'imagemin', 'copy', 'replace', 'cssmin', 'modernizr', 'usemin']);
   grunt.registerTask('watch', ['watch']);
   grunt.registerTask('bower-install', ['bower-install']);
+  grunt.registerTask('sass', ['compass:full']);
 
   grunt.loadNpmTasks("grunt-usemin");
   grunt.loadNpmTasks("grunt-modernizr");
