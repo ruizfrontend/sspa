@@ -144,24 +144,62 @@ module.exports = function(grunt) {
   });
 
   // Default task(s).
-  grunt.registerTask('compile', ['compass:min', 'useminPrepare','concat',
-    'uglify', 'copy', 'replace', 'cssmin','modernizr',  'usemin']);
-  grunt.registerTask('compileimg', ['compass:min', 'useminPrepare','concat',
-    'uglify', 'imagemin', 'copy', 'replace', 'cssmin', 'modernizr', 'usemin']);
-  grunt.registerTask('watch', ['watch']);
-  grunt.registerTask('bower-install', ['bower-install']);
-  grunt.registerTask('sass', ['compass:full']);
+  grunt.registerTask('compile', [], function(){
 
-  grunt.loadNpmTasks("grunt-usemin");
-  grunt.loadNpmTasks("grunt-modernizr");
-  grunt.loadNpmTasks('grunt-bower-install');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-text-replace');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-usemin');
+
+    grunt.task.run('compass:min', 'useminPrepare','concat',
+    'uglify', 'copy', 'replace', 'cssmin', 'usemin');
+
+  });
+
+  grunt.registerTask('compileimg', [], function(){
+
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-usemin');
+
+    grunt.task.run('compass:min', 'useminPrepare','concat',
+    'uglify', 'imagemin', 'copy', 'replace', 'cssmin', 'usemin');
+
+  });
+
+  grunt.registerTask('watch', [], function(){
+
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.task.run('watch');
+
+  });
+
+  grunt.registerTask('compassfull', [], function(){
+
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.task.run('compass:full');
+  });
+
+  grunt.registerTask('bower-install', [], function(){
+
+    grunt.loadNpmTasks('grunt-bower-install');
+    grunt.task.run('bower-install');
+  });
+
+  grunt.registerTask('sass', [], function(){
+
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.task.run('compass:full');
+  });
 };
