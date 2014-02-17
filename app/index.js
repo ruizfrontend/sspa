@@ -143,7 +143,6 @@ AppGenerator.prototype.packageJSON = function packageJSON() {
 
 AppGenerator.prototype.git = function git() {
   this.copy('gitignore', '.gitignore');
-  this.copy('gitattributes', '.gitattributes');
 };
 
 AppGenerator.prototype.bower = function bower() {
@@ -177,10 +176,19 @@ AppGenerator.prototype.resto = function resto() {
   this.copy('readme.md', 'readme.md');
   this.copy('entorno.properties', 'entorno.properties');
   
-  this.mkdir('templates');
+  this.copy('routes.yml', 'routes.yml');
+  this.copy('settings.yml', 'settings.yml');
 
-  this.copy('templates/html.html', 'templates/html.html');
-  this.template('templates/base.html', 'templates/base.html');
+  this.directory('vendor', 'vendor');
+
+  this.mkdir('src');
+
+  this.directory('src', 'src');
+
+  this.mkdir('twigs');
+
+  this.directory('twigs', 'twigs');
+  this.template('twigs/base.html.twig', 'twigs/base.html.twig');
 
   this.mkdir('js');
 

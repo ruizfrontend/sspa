@@ -4,6 +4,8 @@
 
 Este generador crea una estructura de proyectos para un proyecto genérico del lab.
 
+La versión actual monta Silex (versión simplificada de simfony), y todo lo necesario para generar la aplicación del cliente (Grunt, bower, js, sass).
+
 El proyecto se generará en la carpeta en la que estés, y esta será tu carpeta de desarrollo, con su index.html y todo eso. A partir de esta carpeta se generarán las carpetas scss, js, img, fonts.... además de todos los archivos de configuración habituales.
 
 Tembién se generará la configuración para **grunt** con 4 tareas configuradas:

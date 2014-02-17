@@ -1,0 +1,9 @@
+# routes.yml
+
+index:
+  path: /
+  defaults: { _controller: 'Controller\ApplicationController::indexAction' }
+
+prueba:
+  path: /prueba/{test}
+  defaults: { _controller: 'Controller\ApplicationController::pruebaAction' }

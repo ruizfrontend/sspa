@@ -1,0 +1,16 @@
+{
+    "require": {
+        "silex/silex": "1.1.*@dev",
+        "symfony/twig-bridge": "2.1.*",
+        "twig/twig": ">=1.14.0,<2.0-dev",
+        "symfony/config": "~2.1",
+        "symfony/yaml": "~2.1",
+        "symfony/security": "~2.3",
+        "deralex/yaml-config-service-provider": "1.0.x-dev"
+    },
+    "autoload": {
+        "psr-0": {
+        	"": "src"
+        }
+    }
+}
