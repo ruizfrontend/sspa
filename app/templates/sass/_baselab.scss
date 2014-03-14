@@ -13,7 +13,7 @@
 }
 .ft-awesome { font-family: 'FontAwesome'; }
 */
-body { color: white; font-family: "RTVEfontSansR", Arial, Helvetica, sans-serif; font-size: 1.2em; position: relative; overflow: hidden; }
+body { color: white; font-family: "RTVEfontSansR", Arial, Helvetica, sans-serif; font-size: 1.2em; }
 
 /* ___-_ main elements _-________________ */
 h1{ padding-bottom: 24px; font-size: 1.4em; line-height: 0.6em; }
@@ -30,7 +30,7 @@ a { color: #888888;
 a.block { display: block; height: 100%; width: 100%; }
 
 p { font-size: 0.9em; line-height: 1.1em; margin-bottom: 1em; }
-strong { font-family: "RTVEfontSansB", Arial, Helvetica, sans-serif; }
+strong { font-weight: 600; }
 
 /* ___-_ workers _-________________ */
 .inline { display: inline; }
@@ -48,6 +48,10 @@ strong { font-family: "RTVEfontSansB", Arial, Helvetica, sans-serif; }
 .wk-col-33 { width: 33%; }
 .wk-cent { text-align: center; }
 .wk-right { text-align: right; }
+
+.wk-clr-l { clear: left; }
+.wk-clr-r { clear: right; }
+.wk-clr-b { clear: both; }
 
 .wk-valign { display: table; vertical-align: middle; height: 100%; width: 100%; }
   .wk-valign-cont { display: table-cell; vertical-align: middle; text-align: center; }

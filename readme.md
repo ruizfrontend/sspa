@@ -2,9 +2,7 @@
 
 ##Yeoman generator para los proyectos del lab.
 
-Este generador crea una estructura de proyectos para un proyecto genérico del lab.
-
-La versión actual monta Silex (versión simplificada de simfony), y todo lo necesario para generar la aplicación del cliente (Grunt, bower, js, sass).
+Generador de proyectos para un proyecto genérico del lab. La versión actual monta Silex (versión simplificada de symfony), y todo lo necesario para generar la aplicación del cliente (Grunt, js, sass).
 
 El proyecto se generará en la carpeta en la que estés, y esta será tu carpeta de desarrollo, con su index.html y todo eso. A partir de esta carpeta se generarán las carpetas scss, js, img, fonts.... además de todos los archivos de configuración habituales.
 
@@ -47,10 +45,9 @@ Tras esto deberíamos ser capaces de generar un proyecto nuevo usando desde una 
 
 ## Post instalacción
 
-Una vez generado el proyecto, siguiendo los pasos solicitados por **yeoman**, deberíamos tener todos los archivos necesarios para nuestro proyecto. Sin embargo antes de poder compilarlo necesitamos generar por lo menos una vez nuestros archivos dinámicos. Para ello ejecutamos los comandos
+Una vez generado el proyecto, siguiendo los pasos solicitados por **yeoman**, deberíamos tener todos los archivos necesarios para nuestro proyecto. *Sin embargo antes de poder compilarlo necesitamos generar por lo menos una vez nuestros archivos dinámicos. Para ello ejecutamos los comandos*
 
 ```
-  grunt bower-install
   grunt watch
 ```
 
@@ -61,13 +58,3 @@ Una vez hecho esto, grunt esperará a que se cambien los archivos de la carpeta 
   grunt compileimg
 ```
 
-#### Third-Party Dependencies
-
-*(HTML/CSS/JS/Images/etc)*
-
-Añadimos librerías externas con [bower-install](https://github.com/stephenplusplus/grunt-bower-install): 
-
-```bash
-  bower install --save jquery
-  grunt bower-install
-```

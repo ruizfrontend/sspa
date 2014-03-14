@@ -1,0 +1,31 @@
+/* Cabecera________________ */
+/*  Requiere $main_sprite */
+
+#lab-header { 
+    width:100%; background: white; position: relative;
+    font-size: 0.8em; text-align: center; height: 100px;
+
+  .logo { position: relative; z-index: 1; float: left; height: 2.4em; width: 8.4em; padding: 0; background: $main_sprite  4px -118px no-repeat; 
+
+    &:hover { background-position: 4px -159px}
+
+    a { display:block; height: 100%; width: 100%; text-indent: -999px; overflow: hidden; }
+  }
+
+}
+
+.social-lockup { position: relative;
+
+  a { display: block; float: right; text-indent: -999px; overflow: hidden; margin-top: 7px; margin-right: 10px;
+      width: 30px; height: 30px; background: $main_sprite top left no-repeat;  }
+
+  .social-fbook { background-position: -181px -126px; 
+    &:hover { background-position: -181px -167px; }
+  }
+  .social-twitter { background-position: -216px -126px; 
+    &:hover { background-position: -216px -167px; }
+  }
+  .social-gplus { background-position: -143px -126px; 
+    &:hover { background-position: -143px -167px; }
+  }
+}

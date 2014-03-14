@@ -33,17 +33,20 @@ AppGenerator.prototype.askFor = function askFor() {
 
   var prompts = [{
     type: 'input',
+    name: 'initFolder',
+    message: '\
+    Escriba la carpeta que contendrá el proyecto \n\
+    (se creará la carpeta e inluirá el proyecto dentro)',
+    validate: function(input) { return(input.indexOf(' ') == -1); },
+    default: 'newLabProy'
+  },{
+    type: 'input',
     name: 'finalFolder',
     message: '\
     Escriba la carpeta final para el proyecto \n\
     (la que grunt usará para \'compilar\' el proyecto)',
     validate: function(input) { return(input.indexOf(' ') == -1); },
-    default: 'newLabProy'
-  },{
-    type: 'confirm',
-    name: 'corePhp',
-    message: '¿Deseas incluir el core PHP del lab?',
-    default: true
+    default: 'newLabProyCompiled'
   },{
     type: 'checkbox',
     name: 'featLab',
@@ -69,59 +72,19 @@ AppGenerator.prototype.askFor = function askFor() {
       value: 'lbtUrl',
       checked: false
     }]
-  },{
-    type: 'checkbox',
-    name: 'featLibs',
-    message: '¿Deseas incluir alguna librería externa? (jQuery se incluye por defecto)',
-    choices: [{
-      name: 'modernizr',
-      value: 'includeModernizr',
-      checked: true
-    }, {
-      name: 'popcorns.js -> procesado de eventos multimedia',
-      value: 'libsPopcorn',
-      checked: false
-    }, {
-      name: 'mouseWheel -> control de la rueda del ratón',
-      value: 'libsMousewheel',
-      checked: false
-    }, {
-      name: 'snap.js -> dibujo svg',
-      value: 'libsSnap',
-      checked: false
-    }, {
-      name: 'd3js -> gráficas',
-      value: 'libsD3',
-      checked: false
-    }, {
-      name: 'moment.js -> simplifica el uso de fechas',
-      value: 'libsMomentjs',
-      checked: false
-    }, {
-      name: 'hammer.js -> control de eventos touch',
-      value: 'libsHammer',
-      checked: false
-    }]
   }];
 
   this.prompt(prompts, function (answers) {
+
     this.finalFolder = answers.finalFolder;
+    this.initFolder = answers.initFolder;
 
     var featLab = answers.featLab;
-    var featLibs = answers.featLibs;
 
     function hasFeatureLab(feat) { return featLab.indexOf(feat) !== -1; }
-    function hasFeatureLib(feat) { return featLibs.indexOf(feat) !== -1; }
 
     // manually deal with the response, get back and store the results.
     // we change a bit this way of doing to automatically do this in the self.prompt() method.
-    this.includeModernizr = hasFeatureLib('includeModernizr');
-    this.libsPopcorn = hasFeatureLib('libsPopcorn');
-    this.libsMousewheel = hasFeatureLib('libsMousewheel');
-    this.libsSnap = hasFeatureLib('libsSnap');
-    this.libsD3 = hasFeatureLib('libsD3');
-    this.libsMomentjs = hasFeatureLib('libsMomentjs');
-    this.libsHammer = hasFeatureLib('libsHammer');
 
     this.lbtConsole = hasFeatureLab('lbtConsole');
     this.lbtFullscreen = hasFeatureLab('lbtFullscreen');
@@ -133,86 +96,70 @@ AppGenerator.prototype.askFor = function askFor() {
   }.bind(this));
 };
 
-AppGenerator.prototype.gruntfile = function gruntfile() {
-  this.template('Gruntfile.js');
-};
-
-AppGenerator.prototype.packageJSON = function packageJSON() {
-  this.template('_package.json', 'package.json');
-};
-
-AppGenerator.prototype.git = function git() {
-  this.copy('gitignore', '.gitignore');
-};
-
-AppGenerator.prototype.bower = function bower() {
-  this.copy('bowerrc', '.bowerrc');
-  this.template('_bower.json', 'bower.json');
-};
-
-AppGenerator.prototype.jshint = function jshint() {
-  this.copy('jshintrc', '.jshintrc');
-};
-
-AppGenerator.prototype.editorConfig = function editorConfig() {
-  this.copy('editorconfig', '.editorconfig');
-};
-
-AppGenerator.prototype.corePHP = function corePHP() {
-  this.mkdir('corephp');
-
-  this.directory('corephp', 'corephp');
-};
-
-AppGenerator.prototype.mainStylesheet = function mainStylesheet() {
-  this.mkdir('sass');
-
-  this.directory('sass', 'sass');
-};
 
 AppGenerator.prototype.resto = function resto() {
-  this.copy('index.php', 'index.php');
-  this.copy('.htaccess', '.htaccess');
-  this.copy('readme.md', 'readme.md');
-  this.copy('entorno.properties', 'entorno.properties');
+
+  this.mkdir(this.initFolder);
+
+  this.copy('jshintrc', this.initFolder + '/.jshintrc');
+
+  this.mkdir(this.initFolder + '/sass');
+
+  this.directory('sass', this.initFolder + '/sass');
+
+  this.template('Gruntfile.js', this.initFolder + '/Gruntfile.js');
+
+  this.template('_package.json', this.initFolder + '/package.json');
+
+  this.copy('gitignore', this.initFolder + '/.gitignore');
+
+  this.copy('editorconfig', this.initFolder + '/.editorconfig');
+
+  this.copy('index.php', this.initFolder + '/index.php');
+  this.copy('.htaccess', this.initFolder + '/.htaccess');
+  this.copy('readme.md', this.initFolder + '/readme.md');
   
-  this.copy('routes.yml', 'routes.yml');
-  this.copy('settings.yml', 'settings.yml');
+  this.copy('routes.yml', this.initFolder + '/routes.yml');
+  this.template('settings.yml', this.initFolder + '/settings.yml');
 
-  this.directory('vendor', 'vendor');
+  this.directory('vendor', this.initFolder + '/vendor');
 
-  this.mkdir('src');
+  this.mkdir(this.initFolder + '/src');
 
-  this.directory('src', 'src');
+  this.directory('src', this.initFolder + '/src');
 
-  this.mkdir('twigs');
+  this.mkdir(this.initFolder + '/twigs');
 
-  this.directory('twigs', 'twigs');
-  this.template('twigs/base.html.twig', 'twigs/base.html.twig');
+  this.directory('twigs', this.initFolder + '/twigs');
+  this.template('twigs/base.html.twig', this.initFolder + '/twigs/base.html.twig');
 
-  this.mkdir('js');
+  this.mkdir(this.initFolder + '/js');
 
-  this.copy('js/base.js', 'js/base.js');
+  this.copy('js/base.js', this.initFolder + '/js/base.js');
 
-  this.mkdir('img');
+  this.mkdir(this.initFolder + '/img');
 
-  this.directory('img', 'img');
+  this.directory('img', this.initFolder + '/img');
 
-  this.mkdir('font');
+  this.mkdir(this.initFolder + '/libs');
 
-  this.directory('font', 'font');
+  this.directory('libs', this.initFolder + '/libs');
+
+  this.mkdir(this.initFolder + '/font');
+
+  this.directory('font', this.initFolder + '/font');
 };
 
 AppGenerator.prototype.labTools = function labTools() {
-  if(this.lbtConsole) this.copy('labtools/lbt-console.js', 'js/lbt-console.js');
-  if(this.lbtFullscreen) this.copy('labtools/lbt-fullscreen.js', 'js/lbt-fullscreen.js');
-  if(this.lbtMedia) this.copy('labtools/lbt-media.js', 'js/lbt-media.js');
+  if(this.lbtConsole) this.copy('labtools/lbt-console.js', this.initFolder + '/js/lbt-console.js');
+  if(this.lbtFullscreen) this.copy('labtools/lbt-fullscreen.js', this.initFolder + '/js/lbt-fullscreen.js');
+  if(this.lbtMedia) this.copy('labtools/lbt-media.js', this.initFolder + '/js/lbt-media.js');
   if(this.lbtTimeline) {
-    this.copy('labtools/lbt-timeline.js', 'js/lbt-timeline.js');
-    this.copy('labtools/lbt-timeline.css', 'js/lbt-timeline.css');
+    this.copy('labtools/lbt-timeline.js', this.initFolder + '/js/lbt-timeline.js');
+    this.copy('labtools/lbt-timeline.css', this.initFolder + '/js/lbt-timeline.css');
   }
-  if(this.lbtUrl) this.copy('labtools/lbt-url.js', 'js/lbt-url.js');
-  if(this.lbtConsole) this.copy('labtools/lbt-console.js', 'js/lbt-console.js');
+  if(this.lbtUrl) this.copy('labtools/lbt-url.js', this.initFolder + '/js/lbt-url.js');
+  if(this.lbtConsole) this.copy('labtools/lbt-console.js', this.initFolder + '/js/lbt-console.js');
 }
 
 AppGenerator.prototype.install = function () {
@@ -221,9 +168,24 @@ AppGenerator.prototype.install = function () {
   }
 
   var done = this.async();
-  this.installDependencies({
-    skipMessage: this.options['skip-install-message'],
-    skipInstall: this.options['skip-install'],
-    callback: done
-  });
+
+  console.log(chalk.magenta('\n\
+  Gracias por usar el generador de proyectos de lab RTVE.es\n\
+  ---------------------------------------------------------') + '\n\
+  \n\
+  Si todo fue bien, se habrá creado la ' + chalk.magenta('carpeta ' + this.initFolder ) + ' con \n\
+  todo lo necesario para crear el proyecto.\n\
+  \n\
+  Por último entra en tu carpeta ' + this.initFolder + ' y ejecuta  ' + chalk.magenta('npm install') + ' \n\
+  para descargar los paquetes necesarios y ya puedes comenzar a usar el proyecto.\n\
+  \n\
+  Desde ahí puedes usar Grunt sass para compilar sass, Grunt Watch para \n\
+  generarlo dinámicamente al hacer cambios en los archivos sass. \n\
+  \n\
+  Para generar la versión final del proyecto puedes escribir \n\
+   ' + chalk.magenta('Grunt compileimg') + 'para optimizar las imagenes o solo ' + chalk.magenta('Grunt \n\
+  compile') + ' para no procesar las imagenes.\n\
+  \n\
+   ' + chalk.magenta('Tu proyecto final se creará en la carpeta ' + this.finalFolder) + '\n \n');
+
 };

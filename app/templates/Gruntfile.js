@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     // additional tasks can operate on them
     useminPrepare: {
         options: {
-            dest: '../newLabProy',
+            dest: '../<%= finalFolder %>',
             root: './'
         },
         html: 'twigs/base.html.twig'
@@ -40,14 +40,14 @@ module.exports = function(grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-        html: ['../newLabProy/{,*/}*.html']
+        html: ['../<%= finalFolder %>/twigs/base.html.twig']
     },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
         compass: {
             files: ['sass/{,*/}*.{scss,sass}'],
-            tasks: ['compass:full']
+            tasks: ['compassfull']
         }
     },
 
@@ -57,52 +57,14 @@ module.exports = function(grunt) {
       }
     },
 
-/*
-    uglify: {
-      my_target: {
-        files: {
-          '../newLabProy/src/app.js': [
-            './js/{,* /}*.js'
-          ]
-        }
-      },
-      option:{
-         preserveComments: true
-      }
-    },
-
-    autoprefixer: {
-      single_file: {
-        options: {
-          // Target-specific options go here.
-        },
-        src: 'css/styles.css',
-        dest: '../newLabProy/src/styles.min.css'
-      },
-    },
-    
-    cssmin: {
-      combine: {
-      }
-    },
-*/
     imagemin: {                          // Task
       dynamic: {                         // Another target
         files: [{
           expand: true,                  // Enable dynamic expansion
-          src: ['img/*.{png,jpg,gif}'],   // Actual patterns to match
-          dest: '../newLabProy/'                  // Destination path prefix
+          src: ['img/{,*/}{,*/}*.{png,jpg,gif}'],   // Actual patterns to match
+          dest: '../<%= finalFolder %>/'                  // Destination path prefix
         }]
       }
-    },
-
-    modernizr: {
-      "devFile" : "bower_components/modernizr/modernizr.js",
-      "outputFile" : "../newLabProy/bin/modernizr-custom.js",
-      files: [
-          'js/{,*/}*.js',
-          'styles/{,*/}*.css'
-      ],
     },
 
     copy: {
@@ -113,11 +75,11 @@ module.exports = function(grunt) {
             './vendor/**',
             './font/**',
             './twigs/**',
-            './*.csv',
+            './src/**',
             './index.php',
             './routes.yml',
             './settings.yml'],
-            dest: '../newLabProy/', filter: 'isFile'},
+            dest: '../<%= finalFolder %>/', filter: 'isFile'},
         ]
       }
     },
@@ -131,10 +93,10 @@ module.exports = function(grunt) {
     replace: {
 
       php: {
-        src: '../newLabProy/settings.yml',
+        src: '../<%= finalFolder %>/settings.yml',
         overwrite: true,
         replacements: [
-          {from: 'FINALPATH: /finalpath/', to: 'FINALPATH: /newLabProy/'},
+          {from: 'FINALPATH: /<%= initFolder %>/', to: 'FINALPATH: /<%= finalFolder %>/'},
           {from: 'debug: true', to: 'debug: false'}
         ]
       },
@@ -152,10 +114,11 @@ module.exports = function(grunt) {
       grunt.loadNpmTasks('grunt-contrib-uglify');
       grunt.loadNpmTasks('grunt-contrib-copy');
       grunt.loadNpmTasks('grunt-contrib-cssmin');
+      grunt.loadNpmTasks('grunt-text-replace');
       grunt.loadNpmTasks('grunt-usemin');
 
       grunt.task.run('compass:min', 'useminPrepare', 'concat',
-          'uglify', 'copy', 'cssmin', 'usemin');
+          'uglify', 'copy', 'cssmin', 'replace', 'usemin');
 
   });
 
@@ -168,9 +131,10 @@ module.exports = function(grunt) {
       grunt.loadNpmTasks('grunt-contrib-imagemin');
       grunt.loadNpmTasks('grunt-contrib-copy');
       grunt.loadNpmTasks('grunt-contrib-cssmin');
+      grunt.loadNpmTasks('grunt-text-replace');
       grunt.loadNpmTasks('grunt-usemin');
 
-      grunt.task.run('compass:min', 'useminPrepare', 'concat',
+      grunt.task.run('compass:min', 'replace', 'useminPrepare', 'concat',
           'uglify', 'imagemin', 'copy', 'cssmin', 'usemin');
 
   });

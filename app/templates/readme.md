@@ -24,7 +24,6 @@ Para ello necesitamos *NPM* y *bower* (no iríamos muy lejos sin ellos) y ejecut
 
 ```bash
   npm install
-  bower install
 ```
 
 Finalmente hace falta hacer un primer renderizado del sass para que se genere un styles.css útil.
