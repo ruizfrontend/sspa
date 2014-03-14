@@ -6,7 +6,10 @@
         "symfony/config": "~2.1",
         "symfony/yaml": "~2.1",
         "symfony/security": "~2.3",
-        "deralex/yaml-config-service-provider": "1.0.x-dev"
+        "deralex/yaml-config-service-provider": "1.0.x-dev",
+        "doctrine/dbal": "2.2.*",
+        "symfony/monolog-bridge": "~2.3",
+        "nicl/silex-markdown": "1.*"
     },
     "autoload": {
         "psr-0": {
