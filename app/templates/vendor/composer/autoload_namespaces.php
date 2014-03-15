@@ -27,5 +27,5 @@ return array(
     'Doctrine\\DBAL' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common' => array($vendorDir . '/doctrine/common/lib'),
     'DerAlex\\Silex' => array($vendorDir . '/deralex/yaml-config-service-provider/src'),
-    '' => array($baseDir . '/src'),
+    '' => array($baseDir . '/app'),
 );

@@ -75,7 +75,7 @@ module.exports = function(grunt) {
             './vendor/**',
             './font/**',
             './twigs/**',
-            './src/**',
+            './app/**',
             './index.php',
             './routes.yml',
             './settings.yml'],
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
         src: '../<%= finalFolder %>/settings.yml',
         overwrite: true,
         replacements: [
-          {from: 'FINALPATH: /<%= initFolder %>/', to: 'FINALPATH: /<%= finalFolder %>/'},
+          {from: 'base_url: /<%= initFolder %>/', to: 'base_url: /<%= finalFolder %>/'},
           {from: 'debug: true', to: 'debug: false'}
         ]
       },

@@ -48,6 +48,14 @@ AppGenerator.prototype.askFor = function askFor() {
     validate: function(input) { return(input.indexOf(' ') == -1); },
     default: 'newLabProyCompiled'
   },{
+    type: 'input',
+    name: 'jsNamespace',
+    message: '\
+    Escriba el namespace para el javascript \n\
+    (se creará en base.js)',
+    validate: function(input) { return(input.indexOf(' ') == -1); },
+    default: 'app'
+  },{
     type: 'checkbox',
     name: 'featLab',
     message: '¿Deseas incluir algun modulo js de labTools?',
@@ -78,6 +86,7 @@ AppGenerator.prototype.askFor = function askFor() {
 
     this.finalFolder = answers.finalFolder;
     this.initFolder = answers.initFolder;
+    this.jsNamespace = answers.jsNamespace;
 
     var featLab = answers.featLab;
 
@@ -124,9 +133,9 @@ AppGenerator.prototype.resto = function resto() {
 
   this.directory('vendor', this.initFolder + '/vendor');
 
-  this.mkdir(this.initFolder + '/src');
+  this.mkdir(this.initFolder + '/app');
 
-  this.directory('src', this.initFolder + '/src');
+  this.directory('app', this.initFolder + '/app');
 
   this.mkdir(this.initFolder + '/twigs');
 
@@ -135,7 +144,7 @@ AppGenerator.prototype.resto = function resto() {
 
   this.mkdir(this.initFolder + '/js');
 
-  this.copy('js/base.js', this.initFolder + '/js/base.js');
+  this.template('js/base.js', this.initFolder + '/js/base.js');
 
   this.mkdir(this.initFolder + '/img');
 

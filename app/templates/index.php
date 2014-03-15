@@ -22,11 +22,11 @@ $app['debug'] = $app['config']['debug'];
 $app['dataLoader'] = function () { return new dataLoader(); };
 
   /* Importando datos gracias a services -> dataloader.php
-$seoFile = 'src/tdData.csv';
+$seoFile = 'app/tdData.csv';
 $app['dataLoader']->getData($seoFile, 'seo', $app, 'csv', 'url'); // -> nos genera $app['dataLoader.seo'] 
 */
   /* Otra importación
-$seoFile = 'src/corresponsales.csv';
+$seoFile = 'app/corresponsales.csv';
 $app['dataLoader']->getData($seoFile, 'corresp', $app, 'csv', 'lugar'); // -> nos genera $app['dataLoader.corresp']
 */
 

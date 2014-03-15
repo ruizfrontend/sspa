@@ -30,7 +30,7 @@ class dataLoader {
   	if($format == 'csv') {
     	return $app['dataLoader.'.$name] = FileToArrayServiceProvider::fileCSVToArray($file, $column);
   	} elseif ($format == 'json') {
-    	return $app['dataLoader.'.$name] = json_encode(file_get_contents($file));
+    	return $app['dataLoader.'.$name] = json_decode(file_get_contents($file));
   	}
 
   }

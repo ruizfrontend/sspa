@@ -80,24 +80,21 @@
   <!-- endbuild -->
 
   <script>
-    {% block js %}
 
-      var activeSect = {% if section is not defined %} "" {% else %} "{{ section }}" {% endif %};
-      var subSect = {% if year is not defined %} "" {% else %}"{{ year }}"{% endif %};
+    //var activeSect = {% if section is not defined %} "" {% else %} "{{ section }}" {% endif %};
+    //var subSect = {% if year is not defined %} "" {% else %}"{{ year }}"{% endif %};
 
-      if(labTools && labTools.url) {
-        labTools.url.data.baseUrl = '';
-        labTools.url.data.baseUrlNO = '{{ app.config.base_url }}';
-        //labTools.url.data.ga = {% if app.config.debug %}false{% else %}true{% endif %};
-      }
+    if(labTools && labTools.url) {
+      labTools.url.data.baseUrl = '';
+      labTools.url.data.baseUrlNO = '{{ app.config.base_url }}';
+      labTools.url.data.ga = {% if app.config.debug %}false{% else %}true{% endif %};
+    }
 
-      if(labTools && labTools.console) {
-        labTools.console.data.log = {% if app.config.debug %}false{% else %}true{% endif %};
-      }
+    if(labTools && labTools.console) {
+      labTools.console.data.log = {% if app.config.debug %}false{% else %}true{% endif %};
+    }
 
-      tds.secciones.goTo(activeSect, subSect);
-
-    {% endblock %}
+    {% block js %}{% endblock %}
   </script>
 
 </body>

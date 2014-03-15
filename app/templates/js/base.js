@@ -24,27 +24,27 @@ Desarrollo: David Ruiz / Francisco Quintero / Carlos Jiménez Delgado @2013_____
 // Objeto principal 
 // -----------------------------------------------------------------------------------
 
-var tds = {
+var <%= jsNamespace %> = {
   init: function() {
     // gestión de urls____________________________________________________________________
     if(labTools.url) {
-      labTools.url.initiate(tds.handleUrlOnReady, tds.handleUrlOnChange);
+      labTools.url.initiate(<%= jsNamespace %>.handleUrlOnReady, <%= jsNamespace %>.handleUrlOnChange);
     }
 
       // inicializando video____________________________________________________________
-    labTools.media.init();
+    //labTools.media.init();
 
       // redimensionados____________________________________________________________
-    $(window).bind('orientationchange resize', tds.handleResize).trigger('resize');
+    $(window).bind('orientationchange resize', <%= jsNamespace %>.handleResize).trigger('resize');
 
       // eventos scroll ____________________________________________________________
-    $('body, html').add(document).add(window).bind('scroll', tds.scrollHandler);//.trigger('scroll');
+    $('body, html').add(document).add(window).bind('scroll', <%= jsNamespace %>.scrollHandler);//.trigger('scroll');
 
   },
           // función control de redimensionados______________________________________________________
   handleResize: function() {
-    tds.cache.winWidth = tds.cache.$window.width();
-    tds.cache.winHeigth = tds.cache.$window.height();
+    <%= jsNamespace %>.cache.winWidth = <%= jsNamespace %>.cache.$window.width();
+    <%= jsNamespace %>.cache.winHeigth = <%= jsNamespace %>.cache.$window.height();
 
     // mi_modulo.handleResize()
   },
@@ -61,6 +61,13 @@ var tds = {
   },
 };
 
+// Almacenamiento en general
+// -----------------------------------------------------------------------------------
+<%= jsNamespace %>.cache = {
+  winWidth: 0,                            // tamaños de cosas
+  winHeigth: 0,
+};
+
 
 // DOCUMENT READY
 // ----------------------------------------------------------------------------------------------------------------
@@ -68,7 +75,7 @@ var tds = {
 
 $( document ).ready(function() {
 
-  tds.init();
+  <%= jsNamespace %>.init();
 
 });
 
