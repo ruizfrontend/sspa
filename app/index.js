@@ -26,9 +26,7 @@ AppGenerator.prototype.askFor = function askFor() {
     Bienvenido al generador de proyectos de lab RTVE.es\n\
     ---------------------------------------------------\n\
     \n\
-    Se generará la estructura básica de proyecto en la carpeta actual\n\
-    además se configurará grunt para permitir compilar el proyecto \n\
-    en la carpeta de destino que desee. \n \n'));
+    Se generará la estructura básica de proyecto en la carpeta actual además se configurará grunt para permitir compilar el proyecto en la carpeta de destino que desee. \n \n'));
   }
 
   var prompts = [{
@@ -182,19 +180,13 @@ AppGenerator.prototype.install = function () {
   Gracias por usar el generador de proyectos de lab RTVE.es\n\
   ---------------------------------------------------------') + '\n\
   \n\
-  Si todo fue bien, se habrá creado la ' + chalk.magenta('carpeta ' + this.initFolder ) + ' con \n\
-  todo lo necesario para crear el proyecto.\n\
+  Si todo fue bien, se habrá creado la ' + chalk.magenta('carpeta ' + this.initFolder ) + ' con todo lo necesario para crear el proyecto.\n\
   \n\
-  Por último entra en tu carpeta ' + this.initFolder + ' y ejecuta  ' + chalk.magenta('npm install') + ' \n\
-  para descargar los paquetes necesarios y ya puedes comenzar a usar el proyecto.\n\
+  Por último entra en tu carpeta ' + this.initFolder + ' y ejecuta ' + chalk.magenta('npm install') + ' para descargar los paquetes necesarios y ya puedes comenzar a usar el proyecto.\n\
   \n\
-  Desde ahí puedes usar Grunt sass para compilar sass, Grunt Watch para \n\
-  generarlo dinámicamente al hacer cambios en los archivos sass. \n\
+  Desde ahí puedes usar  ' + chalk.magenta('Grunt sass') + ' para compilar sass, Grunt Watch para generarlo dinámicamente al hacer cambios en los archivos sass. \n\
   \n\
-  Para generar la versión final del proyecto puedes escribir \n\
-   ' + chalk.magenta('Grunt compileimg') + 'para optimizar las imagenes o solo ' + chalk.magenta('Grunt \n\
-  compile') + ' para no procesar las imagenes.\n\
+  Para generar la versión final del proyecto puedes escribir ' + chalk.magenta('Grunt compileimg') + ' para optimizar las imagenes o solo ' + chalk.magenta('Grunt compile') + ' para no procesar las imagenes.\n\
   \n\
-   ' + chalk.magenta('Tu proyecto final se creará en la carpeta ' + this.finalFolder) + '\n \n');
-
+   ' + chalk.magenta('El proyecto compilado se creará en la carpeta ' + this.finalFolder) + '\n \n');
 };

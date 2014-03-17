@@ -134,8 +134,8 @@ module.exports = function(grunt) {
       grunt.loadNpmTasks('grunt-text-replace');
       grunt.loadNpmTasks('grunt-usemin');
 
-      grunt.task.run('compass:min', 'replace', 'useminPrepare', 'concat',
-          'uglify', 'imagemin', 'copy', 'cssmin', 'usemin');
+      grunt.task.run('compass:min', 'useminPrepare', 'concat',
+          'uglify', 'imagemin', 'copy', 'cssmin', 'replace', 'usemin');
 
   });
 
@@ -143,7 +143,7 @@ module.exports = function(grunt) {
 
       grunt.loadNpmTasks('grunt-contrib-watch');
       grunt.loadNpmTasks('grunt-contrib-compass');
-      grunt.task.run('watch');
+      grunt.task.run('compassfull');
 
   });
 
