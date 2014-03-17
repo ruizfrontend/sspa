@@ -64,6 +64,8 @@ var <%= jsNamespace %> = {
 // Almacenamiento en general
 // -----------------------------------------------------------------------------------
 <%= jsNamespace %>.cache = {
+  $window: $('window'),
+
   winWidth: 0,                            // tamaños de cosas
   winHeigth: 0,
 };
