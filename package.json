@@ -1,6 +1,5 @@
 {
   "name": "generator-lab",
-  "version": "0.2.0.1",
   "description": "Scaffold un proyecto para el lab",
   "license": "BSD",
   "repository": "https://bitbucket.org/ruizfrontend/generator-lab/",

@@ -143,7 +143,7 @@ module.exports = function(grunt) {
 
       grunt.loadNpmTasks('grunt-contrib-watch');
       grunt.loadNpmTasks('grunt-contrib-compass');
-      grunt.task.run('compassfull');
+      grunt.task.run('watch');
 
   });
 
