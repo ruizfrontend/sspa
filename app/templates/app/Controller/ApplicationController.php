@@ -11,7 +11,7 @@ class ApplicationController
 
     public function indexAction(Request $request, Application $app)
     {	
-        return $app['twig']->render('index.html.twig', array());
+        return $app['twig']->render('main.html.twig', array());
     }
 
     public function pruebaAction(Request $request, Application $app, $test)

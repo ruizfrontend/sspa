@@ -35,12 +35,12 @@ module.exports = function(grunt) {
             dest: '../<%= finalFolder %>',
             root: './'
         },
-        html: 'twigs/base.html.twig'
+        html: 'twigs/index.html.twig'
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-        html: ['../<%= finalFolder %>/twigs/base.html.twig']
+        html: ['../<%= finalFolder %>/twigs/index.html.twig']
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -86,7 +86,7 @@ module.exports = function(grunt) {
 
     'bower-install': {
       target: {
-        src: ['./twigs/base.html.twig'],
+        src: ['./twigs/index.html.twig'],
       }
     },
 

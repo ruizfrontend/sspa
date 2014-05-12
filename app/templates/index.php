@@ -49,6 +49,12 @@ $app['routes'] = $app->extend('routes', function (RouteCollection $routes, $app)
     return $routes;
 });
 
+$app->error(function (\Exception $e, $code) use($app) {
+  if(!$app['debug']) {
+    return new Response($app['twig']->render('error.html.twig'), $code);
+  }
+});
+
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 $app->run();

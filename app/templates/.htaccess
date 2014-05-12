@@ -1,5 +1,14 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*) index.php [QSA,L]
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^.*noseque/(.*) js/$1 [L]
+  RewriteRule ^.*js/(.*) %{PATH}js/$1 [L]
+  RewriteRule ^.*src/(.*) src/$1 [L]
+  RewriteRule ^.*img/(.*) img/$1 [L]
+  RewriteRule ^.*bin/(.*) bin/$1 [L]
+  RewriteRule ^.*data/(.*) data/$1 [L]
+  RewriteRule ^.*font/(.*) font/$1 [L]
+  RewriteRule ^.*libs/(.*) libs/$1 [L]
+  RewriteRule ^.*css/(.*) css/$1 [L]
+  RewriteRule ^(.*) index.php [QSA,L]
 </IfModule>

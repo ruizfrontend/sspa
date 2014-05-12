@@ -138,7 +138,7 @@ AppGenerator.prototype.resto = function resto() {
   this.mkdir(this.initFolder + '/twigs');
 
   this.directory('twigs', this.initFolder + '/twigs');
-  this.template('twigs/base.html.twig', this.initFolder + '/twigs/base.html.twig');
+  this.template('twigs/index.html.twig', this.initFolder + '/twigs/index.html.twig');
 
   this.mkdir(this.initFolder + '/js');
 
