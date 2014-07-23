@@ -77,7 +77,7 @@ module.exports = function(grunt) {
             './twigs/**',
             './app/**',
             './index.php',
-            './routes.yml',
+            './routes.csv',
             './settings.yml'],
             dest: '../<%= finalFolder %>/', filter: 'isFile'},
         ]
