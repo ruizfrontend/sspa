@@ -24,7 +24,7 @@ Desarrollo: David Ruiz / Francisco Quintero / Carlos Jiménez Delgado @2013_____
 // Objeto principal 
 // -----------------------------------------------------------------------------------
 
-var app = {
+var <%= jsNamespace %> = {
   init: function() {
     // gestión de urls____________________________________________________________________
     if(labTools.url) {

@@ -14,7 +14,7 @@ enableMarkdown: false
 
 # REQUIRED # import as it generates the routing system -> template at
 routing:
-  url: seo.csv
+  url: routes.csv
   format: csv
   indexColumn: name
   exposeJS: false

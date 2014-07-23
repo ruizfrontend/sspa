@@ -1,8 +1,11 @@
 {
-  "name": "generator-lab",
-  "description": "Scaffold un proyecto para el lab",
-  "license": "BSD",
-  "repository": "https://bitbucket.org/ruizfrontend/generator-lab/",
+  "name": "spa-silex-project",
+  "version": "0.1.0",
+  "description": "Project generated with the spa-silex-generator",
+  "main": "index.php",
+  "author": "@ruizfrontend",
+  "license": "MIT",
+  "repository": "https://github.com/drlz/spa-silex-generator",
   "author": "ruizfrontend@gmail.com",
   "main": "app/index.js",
   "engines": {

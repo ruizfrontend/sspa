@@ -1,9 +1,9 @@
 {
-  "name": "12-1",
+  "name": "spa-silex-project",
   "version": "0.0.0",
-  "description": "",
+  "description": "Project generated with the spa-silex-generator",
   "main": "index.php",
-  "author": "lab.rtve.es",
+  "author": "@ruizfrontend",
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.2",

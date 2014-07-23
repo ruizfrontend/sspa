@@ -1,6 +1,6 @@
-﻿# Lab app generator [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+﻿# Silex single page application yeoman generator [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-##Yeoman generator para los proyectos del lab.
+##Yeoman generator for a Silex single page application
 
 Generador de proyectos para un proyecto genérico del lab. La versión actual monta Silex (versión simplificada de symfony), y todo lo necesario para generar la aplicación del cliente (Grunt, js, sass).
 

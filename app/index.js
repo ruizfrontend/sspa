@@ -125,7 +125,7 @@ AppGenerator.prototype.resto = function resto() {
   this.copy('index.php', this.initFolder + '/index.php');
   this.copy('.htaccess', this.initFolder + '/.htaccess');
   this.copy('readme.md', this.initFolder + '/readme.md');
-  this.copy('routes.yml', this.initFolder + '/routes.yml');
+  this.copy('routes.csv', this.initFolder + '/routes.csv');
 
   this.template('settings.yml', this.initFolder + '/settings.yml');
 
