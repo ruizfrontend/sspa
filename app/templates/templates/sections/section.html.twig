@@ -1,0 +1,8 @@
+{% set urlSect = routing[this]['url'] %}
+
+<div id="sct-{{ this }}" class="bl-sct {% if this == activeRoute %}sct-act{% endif %}"{% if urlSect %} data-url="{{ routing[this]['url'] }}"{% endif %}>
+
+  <h1>Sección ejemplo 1</h1>
+  <p>Borrame, gracias</p>
+
+</div>

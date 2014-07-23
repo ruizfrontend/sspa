@@ -1,0 +1,13 @@
+{% extends twigFolder ~ '/index.html.twig' %}
+
+{% block content %}
+  <aside role="main" id="main">
+
+    {% for twig in twigsArray %}
+
+      {% include sectionsFolder ~ '/' ~ twig ~ '.html.twig' with {'this': twig} %}
+
+    {% endfor %}
+
+  </aside>
+{% endblock %}

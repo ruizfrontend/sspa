@@ -1,0 +1,383 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="es-es"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="es-es"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="es-es"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="es-es"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Content-Language" content="es-es">
+
+  <title>Página no encontrada | Lab RTVE.es</title>
+  <meta name="description" content="Repasa los últimos proyectos del Laboratorio de RTVE.es">
+  <meta name="Keywords" content="multimedia, interactivo, periodismo de datos, webdoc, timeline">
+  <meta name="author" content="lab.rtve.es">
+
+  <!-- viewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <style>
+/* ___-_ main elements _-________________ *//* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed,  figure, figcaption, footer, header, hgroup,  menu, nav, output, ruby, section, summary, time, mark, audio, video {  margin: 0; padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline; }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: '';  content: none; } table {  border-collapse: collapse; border-spacing: 0; }
+
+html, body { height: 100%; margin: 0; padding: 0; }
+
+/* ___-_ font-face _-________________ */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../font/fontawesome-webfont.eot?v=3.2.0');
+  src: url('../font/fontawesome-webfont.eot?#iefix&v=3.2.0') format('embedded-opentype'), url('../font/fontawesome-webfont.woff?v=3.2.0') format('woff'), url('../font/fontawesome-webfont.ttf?v=3.2.0') format('truetype'), url('../font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.0') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ft-awesome { font-family: 'FontAwesome'; }
+
+body { overflow: hidden; color: #333; background: black; font-family: "RTVEfontR", Arial, Helvetica, sans-serif; font-size: 16px; position: relative;
+  line-height: 1.2em;  }
+
+/* ___-_ main elements _-________________ */
+h1{ padding-bottom: 0.1em; font-size: 2em; line-height: 1.2em; }
+h2{ padding-bottom: 0.1em; font-size: 1.75em; line-height: 1.2em; }
+h3{ padding-bottom: 0.1em; font-size: 1.25em; line-height: 1.2em; }
+h4{ padding-bottom: 0.1em; font-size: 1.25em; line-height: 1.2em; }
+h5{ padding-bottom: 0.1em; font-size: 1.5em; line-height: 1.1em; }
+h6{ padding-bottom: 0.1em; font-size: 1.1em; line-height: 1.1em; }
+
+a { text-decoration: underline; color: #888888;
+    -webkit-transition: color .3s ease-in;-moz-transition: color .3s ease-in;-ms-transition: color .3s ease-in;
+    -transition: color .3s ease-in;transition: color .3s ease-in; }
+  a:hover, a.act { color: white; }
+a.block { display: block; height: 100%; width: 100%; }
+
+/* ___-_ workers _-________________ */
+.inline { display: inline; }
+.wrapper { width: 960px; margin: 0 auto; }
+
+/* Media elements, image + text */
+.wk-media-l { float:left; }
+  .wk-media-l img,
+  .wk-media-r img { display:block; }
+.wk-media-r { display:table-cell; zoom:1; }
+
+/* Columns */
+.wk-col-l { display:inline; float:left; }
+.wk-col-r { display:inline; float:right; }
+.wk-col-50 { width: 48%; margin: 0 1%; }
+.wk-col-33 { width: 33%; }
+.wk-cent { text-align: center; }
+.wk-right { text-align: right; }
+.wk-table { display: table }
+  .wk-tablec { display: table-cell; vertical-align: middle; }
+
+/* Class for hidding elements if JavaScript is enabled */
+html.js body .hidden { display:none; }
+
+/* Clearfix trick to clear floated elements */
+.clearfix:after { content:"."; display:block; clear:both; visibility:hidden; line-height:0; height:0; }
+.clearfix { display:inline-block; } html[xmlns] .clearfix { display:block; }* html .clearfix { height:1%; }
+
+.strong, .winner { font-weight: 800; }
+
+/* ___-_ lab bars _-________________ */
+#lab-header { width:100%; top: 0; left: 0; z-index: 999; background: black; overflow: hidden;
+    font-size: 0.8em; text-align: center; height: 50px; position: fixed; }
+  #lab-header .logo { position: relative; z-index: 1; float: left; height: 3.5em; width: 8.4em; padding: 0; background: url("../img/sp--lab.png") 5px 4px no-repeat; }
+    #lab-header .logo a { display:block; height: 100%; width: 100%; text-indent: -999px; overflow: hidden;}
+
+  #lab-header #menu { display: block; margin: 0; padding: 0; line-height: 4.2em; float: left; height: 2.4em; width: 100%; position: absolute; }
+    #lab-header #menu li { display: inline; margin: 0; padding:0; list-style:none; overflow: hidden; }
+      #lab-header #menu a { display: inline-block; color: #c2c1c1; text-decoration:none; padding: 0 8px 10px 8px; 
+          text-transform: uppercase; line-height: 1em; position: relative; font-size: 1.3em; }
+        #lab-header #menu a.act, #lab-header #menu a:hover { color: #ffffff; }
+        #lab-header #menu a:before { display: block; content: '|'; position: absolute; left: -10px; top: 0; padding-left: 5px; }
+          #lab-header #menu li:first-child a:before { display: none; }
+        #lab-header #menu a:hover:before, #lab-header #menu a.act:before { color: #c2c1c1; }
+
+  #lab-header .social-lockup { position:absolute; top: 0; right: 0; }
+    .social-lockup-oficial { padding: 4px 0px; }
+    #lab-header .social-lockup a { display: block; float: right; text-indent: -999px; overflow: hidden; 
+        width: 34px; height: 50px; margin-right: 6px; background: url("../img/sp--lab.png") top left no-repeat;  }
+      #lab-header .social-lockup .social-fbook { background-position: -89px 6px; }
+      #lab-header .social-lockup .social-twitter { background-position: -118px 6px; }
+
+#lab-footer { float: left; width:100%; margin: 0; padding: 0; position: absolute; z-index: 3;
+    background: black; font-size:13px; text-align:center; height: 26px; }
+  #lab-footer ul { display:inline; margin:0; padding:0; width:100%; float:left; line-height:25px;}
+    #lab-footer ul li { display:inline; margin:0; padding:0 5px 0 0; list-style:none; color:#c2c1c1;}
+    #lab-footer ul li a { color: #c2c1c1; text-decoration: none; padding: 0 5px}
+    #lab-footer ul li a:hover { text-decoration: underline; } 
+#lab-footer.lab-footer-fixed { position: fixed; bottom: 0 }
+
+#menu select { font-size: 2em; margin: 0 auto; background: black; border: none; color: white; line-height: 2em;
+  font-family: "RTVEfontR", Arial, Helvetica, sans-serif; margin-top: 8px;}
+
+/* ___-_ layout _-________________ */
+.js .bl-proyectos { display: none; }
+
+main { display: inline-block; margin-top: 50px; width:100% }
+
+#errorr { background: rgba(0,0,0,0.8); display: none; height: 100%; width: 100%; 
+   position: fixed; top: 0; left: 0; z-index: 1; color: white;}
+
+#preload-cont {width: 1px; height: 1px; overflow: hidden; }
+#preload-done, #preload-done2 { margin-bottom: 50px; }
+#preload-done a, #preload-done2 a { text-decoration: none; padding: 10px 20px; background: white; color: black; }
+#preload-done a:hover, #preload-done2 a:hover { box-shadow: 0 8px 24px -3px black;
+    -webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease; -ms-transition: all 0.5s ease;  transition: all 0.5s ease; }
+#preload-wait { width: 30px; height: 40px; margin: 0 auto; text-indent: -9999px; background: url(../img/loader.gif) center center; margin-bottom: 30px; }
+
+
+#loadmore { height: 100%; width: 100px; background: black; color: white; position: absolute; text-indent: -999px; 
+    background: black url(../img/loader.gif) center center no-repeat; overflow: hidden; }
+
+.no-js #home { display: none; }
+#home { background: rgba(0,0,0,0.8); display: block; height: 100%; width: 100%; 
+   position: fixed; top: 0; left: 0; z-index: 2; color: white;}
+  .bl-home h1 { font-size: 6em; text-indent: -9999px;
+      overflow: hidden; background: url(../img/logo-lab.png) center center no-repeat;}
+  .bl-home h2 { font-size: 1em; max-width: 930px; margin: 0 auto; text-transform: uppercase; line-height: 1.2em; margin-bottom: 1.6em; }
+  .bl-home .wk-table { height: 100%; width: 100%; }
+  .bl-home .adv { width: 280px; margin: 0 auto; color: black; background: white; padding: 10px; text-transform: uppercase; margin-top: 10px; }
+
+.js #blacky { position: fixed; width: 100%; height: 100%; background: black; top: 0;left: 0; z-index: 1; }
+
+/* ___-_ bloque de proyectos _-________________ */
+    .img-wrap img { width: 800px; height: auto; }
+.proyectolab { position: absolute; overflow: hidden; display:block; text-decoration: none; }
+  .no-touch .proyectolab { -webkit-transition: all 1.5s ease; -moz-transition: all 1.5s ease;
+    -o-transition: all 1.5s ease; -ms-transition: all 1.5s ease;  transition: all 1.5s ease; }
+     .no-touch .proyectolab:hover { z-index: 2; }
+  .proyectolab h2 { font-size: 3em; color: white; line-height: 1em; }
+  .proyectolab .desc { color: white; font-family: Arial, Helvetica, sans-serif; font-size: 1.1em; line-height: 1.4em; }
+  .proyectolab .img-wrap { width: 100%; height: 100%; overflow: hidden; }
+    .no-touch .proyectolab .img-wrap img { -webkit-transition: all 0.3s ease-in; -moz-transition: all .3s ease-in;
+      -o-transition: all 0.3s ease-in; -ms-transition: all 0.3s ease-in;  transition: all 0.3s ease-in; position: relative; }
+    .no-touch .proyectolab .img-wrap {  -webkit-transition: all 4.3s ease-in; -moz-transition: all 4.3s ease-in;
+      -o-transition: all 4.3s ease-in; -ms-transition: all 4.3s ease-in;  transition: all 4.3s ease-in;
+        -webkit-transform: scale(1); -moz-transform: scale(1); -o-transform: scale(1);
+        -ms-transform: scale(1); transform: scale(1); 
+        -webkit-transform-origin: 100% 0; -moz-transform-origin: 100% 0; -o-transform-origin: 100% 0;
+        -ms-transform-origin: 100% 0; transform-origin: 100% 0; }
+    .no-touch .proyectolab:hover .img-wrap { -webkit-transform: scale(1.2); -moz-transform: scale(1.2); -o-transform: scale(1.2);
+      -ms-transform: scale(1.2); transform: scale(1.2); }
+  .bl-proy-wrap { position: absolute; top: 0; left: 0; padding: 10%; width: 100%; height: 100%; text-shadow: 1px 3px 2px black, 0px 2px 5px #666; 
+      -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+    .no-touch .bl-proy-wrap  { background: rgba(0,0,0,0.7);  opacity: 0;
+      -webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease; -ms-transition: all 0.5s ease;  transition: all 0.5s ease;
+      -webkit-transform: scale(0); -moz-transform: scale(0); -o-transform: scale(0);
+      -ms-transform: scale(0); transform: scale(0); }
+    .no-touch .proyectolab:hover .bl-proy-wrap { opacity: 1; 
+      -webkit-transform: scale(1); -moz-transform: scale(1); -o-transform: scale(1);
+      -ms-transform: scale(1); transform: scale(1); }
+  .bl-proy-wrap-wrap { overflow: hidden; max-height: 100%; }
+  .bl-proy-wrap .share-tw, .bl-proy-wrap .share-fb { display: inline-block; height: 20px; width: 20px; text-indent: -9999px;
+      background: url("../img/sp--lab2.png") 0 0 no-repeat; margin-right: 10px; margin-bottom: 1em; }
+    .bl-proy-wrap .share-tw { background-position: -27px 0; }
+
+  /* variations by block type */
+.bl-tipo-1 { text-shadow: 0px 2px 3px black, 0px 2px 16px #666; }
+  .bl-tipo-1 .img-wrap, .bl-tipo-1 .bl-proy-wrap { display: block; opacity: 1; }
+    .no-touch .bl-tipo-1 .img-wrap, .no-touch .bl-tipo-1 .bl-proy-wrap {
+        -webkit-transform: scale(1); -moz-transform: scale(1); -o-transform: scale(1);
+        -ms-transform: scale(1); transform: scale(1); background: none;  }
+      .no-touch .bl-tipo-1:hover { box-shadow: none; }
+      .no-touch .bl-tipo-1 .bl-proy-wrap:hover { background: rgba(0,0,0,0.7); }
+      .bl-tipo-1 .bl-proy-wrap-wrap { position: absolute; bottom: 10%;left: 10%; width: 75%; }
+    .no-touch .bl-tipo-1:hover .img-wrap { -webkit-transform: scale(1); -moz-transform: scale(1); -o-transform: scale(1);
+      -ms-transform: scale(1); transform: scale(1); }
+.bl-tipo-2 { font-size: 0.6em; }
+  .bl-tipo-2 .desc { display: none; }
+.bl-tipo-3 h2 { font-size: 2em; }
+
+.contenido { display:none;}
+#carousel { -webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; position: relative; min-width: 100%;
+  -o-transition: all 0.5s ease; -ms-transition: all 0.5s ease;  transition: all 0.5s ease; background: black; }
+  #carousel-wrap { overflow-x: scroll; -webkit-overflow-scrolling: touch }
+
+@media all and (max-width: 1380px) {
+  #carousel { font-size: 0.8em; line-height: 1em; }
+}
+@media all and (max-width: 980px) {
+  #carousel { font-size: 0.7em; line-height: 0.9em; }
+  #menu select { display: block; }
+  #menu ul { display: none; }
+}
+@media all and (max-width: 680px) {
+  .bl-tipo-3 .desc { display: none; }
+  .bl-tipo-4 .desc { display: none; }
+  #carousel { font-size: 0.6em; line-height: 0.6em; }
+  .bl-proy-wrap .desc { display: none; }
+}
+@media all and (max-width: 480px) {
+  #carousel { font-size: 0.4em; line-height: 0.4em; }
+  .bl-home h1 { font-size: 4.5em; }
+  .bl-home h2 { font-size: 0.8em; }
+  #preload-done, #preload-done2 { margin-bottom: 30px; }
+  .bl-home .adv { width: 200px; font-size: 0.8em; }
+  #menu select { font-size: 1em; }
+}
+
+/* ___-_ Página quienes somos _-________________ */
+#quienes { position: fixed; z-index: 1;height: 100%; width: 100%; overflow-y: auto; top: 0; left: 0; background: #efefef;
+    -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease; -ms-transition: all 0.3s ease;  transition: all 0.3s ease;}
+.js #quienes { opacity: 0; 
+    -webkit-transform: scale(0); -moz-transform: scale(0); -o-transform: scale(0);
+    -ms-transform: scale(0); transform: scale(0); }
+  #quienes.act { opacity: 1; -webkit-transform: scale(1); -moz-transform: scale(1); -o-transform: scale(1);
+    -ms-transform: scale(1); transform: scale(1); }
+#ei-slider img { width: 100%; height: auto; display: block; }
+  .homelab { padding:30px 0; text-align:left; width:100%; float:left; background:#efefef;}
+    .homelab .txtintro a:hover, .homelab .txtintro2 a:hover, .homelab2 .txtintro3 a:hover { text-decoration:none!important;}
+    .homelab .txtintro {  text-align:left; float:left; width:46%; padding:0 2%; /*background:orange;*/}
+    .homelab .txtintro h1 { display:block; text-align:left; margin:0; padding:0; /*background:yellow;*/}
+    .homelab .txtintro p { margin:12px 0 0 0; font-size:14px; color:#515151; /*background:red;*/}
+    .homelab .txtintro img { width:100%; height:auto; margin:10px 0;}
+    .homelab .txtintro p {font-size:15px; color:#515151;}
+
+  .homelab .txtintro2 { text-align:left; float:left; width:46%; padding:0 2%; /*background:green;*/}
+    .homelab .txtintro2 h1 { display:block; text-align:left; margin:0; padding:0; /*background:yellow;*/}
+    .homelab .txtintro2 h2 { font-size:22px; margin:10px 0; display: block; width:100%; float:left; font-weight:normal;}
+    .homelab .txtintro2 img { width: 45%; float:left; margin:0 20px 0 0; padding:0;}
+    .homelab .txtintro2 p {  padding:0; font-size:14px; color:#515151; /*background:red;*/}
+    .homelab .txtintro2 a { display:block; float:left; padding:5px 0; /*background:orange;*/}
+    .homelab .txtintro2 p {font-size:15px; color:#515151;}
+
+  .homelab2 { padding:10px 0 0 0; text-align:left; width:100%; float:left; background:#fff;}
+    .homelab2 .txtintro3 { text-align:left; float:left; width:19%; padding:0 3%;}
+    .homelab2 .txtintro3 img { width:100%; height:auto; margin:10px 0;}
+    .homelab2 .txtintro3 h2 { font-size:18px; margin:6px 0; display:block; width:100%; float:left; font-weight:normal;}
+    .homelab2 .txtintro3 p {font-size:15px; color:#515151;}
+
+  .homelab2 { padding:10px 0 50px 0; text-align:left; width:100%; float:left; background:#fff;}
+    .homelab2 .txtintro4 { text-align:left; float:left; width:27%; padding:0 3%;}
+    .homelab2 .txtintro4 img { width:100%; height:auto; margin:10px 0;}
+    .homelab2 .txtintro4 h2 { font-size:18px; margin:6px 0; display:block; width:100%; float:left; font-weight:normal;}
+    .homelab2 .txtintro4 p {font-size:15px; color:#515151;}
+
+  .homelab2 .txtintro5 { text-align:left; float:left; width: 16%; padding: 0 2%; text-align:center }
+    .homelab2 .txtintro5 img { width:100%; height:auto; margin:10px 0;}
+    .homelab2 .txtintro5 h2 { font-size:24px; margin:6px 0 0 0; display:block; width:100%; float:left; font-weight:normal;}
+    .homelab2 .txtintro5 h2 span { display:block; font-size:16px;  width:100%; line-height: 1em; }
+    .homelab2 .txtintro5 h3 { font-size:16px; margin:10px 0; display:block; width:100%; float:left; font-weight:normal;}
+    .homelab2 .txtintro5 p {font-size:15px; color:#515151;}
+
+  .homelab3 { padding:30px 0; text-align:center; width:100%; float:left; background:#efefef;}
+    .homelab3 .txtintro .h-h1 { font-size: 6em; display:block; margin:0; padding:0; 
+      line-height: 1em; margin: 0 auto; margin-top: 50px;}
+    .homelab3 .txtintro h2 { font-size:16px; margin:4px 0 6px 0; display:block; width:100%; float:left; font-weight:normal;}
+    .homelab3 .txtintro p { font-size:15px; color:#515151; margin: 10px auto 0 auto;}
+    .homelab3 .txtintro .introp { margin: 0 10%; font-size: 1.4em; line-height: 1em; }
+
+/* ___-_ iscroll scroll bar _-________________ */
+.myScrollbarH { position: absolute; bottom: 0; width: 100%; height: 20px; z-index: 100; background: rgba(255,255,255,0.4); margin-bottom: 26px; 
+  pointer-events: all!important; cursor: pointer;
+  -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease; -ms-transition: all 0.3s ease;  transition: all 0.3s ease;}
+    .myScrollbarH:hover { background: white; }
+  .myScrollbarH > div { position: absolute; z-index: 100; width: 100%; -webkit-box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5); 
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5);  height: 20px; background: #929292; }
+
+/* ___-_ Full screen button _-________________ */
+.fullscreen #togglefull { display: block; }
+#togglefull { display: none; width: 21px; height: 28px; color: #312f30; border: 1px solid #d9d9d9; text-decoration: none;
+      position: fixed; bottom: 60px; right: 20px; padding: 3px 8px; line-height: 1.3em;
+      -webkit-border-radius: 3px; border-radius: 3px; font-size: 1.4em; color: #3C3C3C;
+      background: #f5f5f5;  background: -moz-linear-gradient(top, #f5f5f5 0%, #f0f0f0 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#f0f0f0));
+      background: -webkit-linear-gradient(top, #f5f5f5 0%,#f0f0f0 100%);
+      background: -o-linear-gradient(top, #f5f5f5 0%,#f0f0f0 100%);
+      background: -ms-linear-gradient(top, #f5f5f5 0%,#f0f0f0 100%);
+      background: linear-gradient(to bottom, #f5f5f5 0%,#f0f0f0 100%); }
+  #togglefull:hover { text-decoration: none; }
+  #togglefull:active { -webkit-box-shadow: inset 0 4px 10px -3px black; box-shadow: inset 0 4px 10px -3px black; }
+  .fullscreen-on #togglefull { background:  -moz-linear-gradient(top, #bbb 0%,#ccc 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bbb), color-stop(100%,#ccc));
+    background: -webkit-linear-gradient(top, #bbb 0%,#ccc 100%);
+    background: -o-linear-gradient(top, #bbb 0%,#ccc 100%);
+    background: -ms-linear-gradient(top, #bbb 0%,#ccc 100%);
+    background: linear-gradient(to bottom, #bbb 0%,#ccc 100%);  }
+  </style>
+  <link rel="stylesheet" href="http://www.irtve.es/css/tipografias.css">
+
+  <script type="text/javascript" src="//www.rtve.es/js/mushrooms/rtve_mushroom.js" ></script>
+</head>
+<body>
+  <header id="lab-header" class="">
+    <div class="logo">
+      <a href="http://rtve.es/" target="_self" title="Visita la web de RTVE.es">RTVE.es</a>
+    </div>
+    <nav id="menu">
+      <ul>
+        <li><a href="/" target="_self" class="act" data-cat="0">inicio</a></li>
+        <li><a href="/webdoc" target="_self" data-cat="1">webdoc</a></li>
+        <li><a href="/interactivo" target="_self" data-cat="2">interactivo</a></li>
+        <li><a href="/timeline" target="_self" data-cat="3">timeline</a></li>
+        <li><a href="/viral" target="_self" data-cat="4">lab viral</a></li>
+        <li><a href="/datos" target="_self" data-cat="5">periodismo de datos</a></li>
+        <li><a href="/about" target="_self" data-cat="6">quiénes somos</a></li>
+      </ul>
+      <select> 
+        <option value="0" selected="selected">inicio</option> 
+        <option value="1">webdoc</option> 
+        <option value="2">interactivo</option> 
+        <option value="3">timeline</option> 
+        <option value="4">lab viral</option> 
+        <option value="5">periodismo de datos</option> 
+        <option value="6">quiénes somos</option> 
+      </select> 
+    </nav>
+        <!-- botones sociales simples -->
+    <div class="social-lockup">
+      <a class="social-fbook" style="display: block;" href="http://www.facebook.com/sharer.php?u=http://lab.rtve.es/" target="_blank"></a>
+      <a class="social-twitter" target="_blank" style="display: block;" href="https://twitter.com/intent/tweet?button_hashtag=lab_rtvees&amp;via=lab_rtvees&amp;text=Repasa los últimos proyectos del Laboratorio de RTVE.es http://lab.rtve.es/" data-lang="es" data-related="lab_rtvees" data-url="http://lab.rtve.es/" via="lab_rtvees"></a>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="bl-home">
+      <div class="wk-table">
+        <div class="wk-tablec wk-cent">
+          <h1><img src="img/logo-lab.png" title="Laboratorio de innovación audiovisual RTVE.es"></h1>
+          <h2>La web que buscas no existe en el lab (aún). <br><a target="_self" href="/" style="color: white" title="Visita la web del laboratorio">Navega</a> por nuestra web y encuentra la página que buscas.</h2>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="lab-footer" class="lab-footer-fixed">
+    <ul>
+      <li>Copyright {{ "now"|date("Y") }} RTVE.es</li>
+      <li>· <a target="_self" href="https://twitter.com/lab_rtvees">SÍGUENOS EN TWITTER</a></li>
+    </ul>
+  </footer>
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.10.1.min.js"><\/script>')</script>
+  <script type="text/javascript">
+
+  //bind the different dom elements
+var tagsurls = ['/', '/webdoc', '/interactivo', '/timeline', '/viral', '/datos', '/about'];
+
+$( document ).ready(function() {
+    //select del menu como el enaterior
+  $('#menu select').bind('change', function() {
+    var $this = $(this).find(':selected');
+    window.location = tagsurls[$this.attr('value')];
+    return false; // prevent default
+  })
+});
+
+  </script>
+  
+</body>
+</html>
