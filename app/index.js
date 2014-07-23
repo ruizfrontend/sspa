@@ -116,7 +116,7 @@ AppGenerator.prototype.resto = function resto() {
 
   this.template('Gruntfile.js', this.initFolder + '/Gruntfile.js');
 
-  this.template('_package.json', this.initFolder + '/package.json');
+  this.copy('_package.json', this.initFolder + '/package.json');
 
   this.copy('gitignore', this.initFolder + '/.gitignore');
 
@@ -125,8 +125,8 @@ AppGenerator.prototype.resto = function resto() {
   this.copy('index.php', this.initFolder + '/index.php');
   this.copy('.htaccess', this.initFolder + '/.htaccess');
   this.copy('readme.md', this.initFolder + '/readme.md');
-  
   this.copy('routes.yml', this.initFolder + '/routes.yml');
+
   this.template('settings.yml', this.initFolder + '/settings.yml');
 
   this.directory('vendor', this.initFolder + '/vendor');

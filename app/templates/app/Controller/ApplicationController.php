@@ -10,13 +10,25 @@ class ApplicationController
 {
 
     public function indexAction(Request $request, Application $app)
-    {	
-        return $app['twig']->render('main.html.twig', array());
-    }
+    {
+        $data = array(
+          'twigFolder' => $app['config']['twigs'],
+          'twigsArray' => $app['sections'],
+          'sectionsFolder' => $app['sectionsFolder'],
+          'activeRoute' => $request->get("_route"),
+          'defaultRoute' => $app['config']['defaultRoute'],
+          'imports' => $app['dataLoaded.imports'],
+          'routing' => $app['routing'],
+          'import' => array()
+        );
 
-    public function pruebaAction(Request $request, Application $app, $test)
-    {  print_r($test);
-        return $app['twig']->render('page.html.twig');
+        foreach ($app['dataLoaded.imports'] as $key => $value) {
+          if($value['exposeTWIG'] || $value['exposeJS']) {
+            $data['import'][$value['title']] = $app[$value['arrayName']];
+          }
+        };
+
+        return $app['twig']->render($app['config']['twigs'] . '/main.html.twig', $data);
     }
 
 }

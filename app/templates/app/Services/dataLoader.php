@@ -26,12 +26,12 @@ class dataLoader {
 
   public function getData($file, $name, $app, $format, $column = null)
   {
-  	
-  	if($format == 'csv') {
-    	return $app['dataLoader.'.$name] = FileToArrayServiceProvider::fileCSVToArray($file, $column);
-  	} elseif ($format == 'json') {
-    	return $app['dataLoader.'.$name] = json_decode(file_get_contents($file));
-  	}
+    
+    if($format == 'csv') {
+      return $app['dataLoader.'.$name] = FileToArrayServiceProvider::fileCSVToArray($file, $column);
+    } elseif ($format == 'json') {
+      return $app['dataLoader.'.$name] = json_decode(file_get_contents($file));
+    }
 
   }
 
