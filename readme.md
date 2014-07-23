@@ -1,5 +1,25 @@
 ﻿# Lab app generator [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
+
+```
+#!python
+/*                   _|
+ _|  _|_|  _|    _|      _|_|_|_|
+ _|_|      _|    _|  _|      _|
+ _|        _|    _|  _|    _|
+ _|          _|_|_|  _|  _|_|_|_|
+     _|_|                                  _|
+   _|      _|  _|_|    _|_|    _|_|_|    _|_|_|_|  
+ _|_|_|_|  _|_|      _|    _|  _|    _|    _|
+   _|      _|        _|    _|  _|    _|    _|
+   _|      _|          _|_|    _|    _|      _|_|
+                           _|
+   _|_|    _|_|_|      _|_|_|
+ _|_|_|_|  _|    _|  _|    _|
+ _|        _|    _|  _|    _|
+   _|_|_|  _|    _|    _|_|_| @ruizfrontend @2014 */
+```
+
 ##Yeoman generator para los proyectos del lab.
 
 Generador de proyectos para un proyecto genérico del lab. La versión actual monta Silex (versión simplificada de symfony), y todo lo necesario para generar la aplicación del cliente (Grunt, js, sass).
