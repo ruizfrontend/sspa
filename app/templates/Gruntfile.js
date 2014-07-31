@@ -75,6 +75,7 @@ module.exports = function(grunt) {
             './src/**',
             './font/**',
             './twigs/**',
+            './vendor/**',
             './app/**',
             './index.php',
             './routes.csv',
