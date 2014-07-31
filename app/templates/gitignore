@@ -1,4 +1,5 @@
 /cache
+/vendor
 composer.lock
 composer.phar
 compify.phar
