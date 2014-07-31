@@ -123,17 +123,18 @@ AppGenerator.prototype.resto = function resto() {
   this.copy('editorconfig', this.initFolder + '/.editorconfig');
 
   this.copy('index.php', this.initFolder + '/index.php');
+  this.copy('composer.json', this.initFolder + '/composer.json');
+  this.copy('composer.phar', this.initFolder + '/composer.phar');
   this.copy('.htaccess', this.initFolder + '/.htaccess');
   this.copy('readme.md', this.initFolder + '/readme.md');
   this.copy('routes.csv', this.initFolder + '/routes.csv');
+  this.copy('log.log', this.initFolder + '/log.log');
 
   this.template('settings.yml', this.initFolder + '/settings.yml');
 
-  this.directory('vendor', this.initFolder + '/vendor');
+  this.mkdir(this.initFolder + '/src');
 
-  this.mkdir(this.initFolder + '/app');
-
-  this.directory('app', this.initFolder + '/app');
+  this.directory('src', this.initFolder + '/src');
 
   this.mkdir(this.initFolder + '/twigs');
 

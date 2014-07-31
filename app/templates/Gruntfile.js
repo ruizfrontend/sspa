@@ -72,7 +72,7 @@ module.exports = function(grunt) {
         files: [
           {src: [
             '.htaccess',
-            './vendor/**',
+            './src/**',
             './font/**',
             './twigs/**',
             './app/**',

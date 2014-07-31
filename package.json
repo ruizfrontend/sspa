@@ -7,13 +7,13 @@
   "license": "MIT",
   "repository": "https://github.com/drlz/spa-silex-generator",
   "author": "ruizfrontend@gmail.com",
-  "main": "app/index.js",
+  "main": "src/index.js",
   "engines": {
     "node": ">=0.8.0",
     "npm": ">=1.2.10"
   },
   "files": [
-    "app"
+    "src"
   ],
   "keywords": [
     "yeoman-generator",
