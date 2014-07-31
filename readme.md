@@ -45,7 +45,20 @@ Tras esto deberíamos ser capaces de generar un proyecto nuevo usando desde una 
 
 ## Post instalacción
 
-Una vez generado el proyecto, siguiendo los pasos solicitados por **yeoman**, deberíamos tener todos los archivos necesarios para nuestro proyecto. *Sin embargo antes de poder compilarlo necesitamos generar por lo menos una vez nuestros archivos dinámicos. Para ello ejecutamos los comandos*
+Una vez generado un proyecto nuevo con yeoman, deberíamos tener los archivos necesarios para nuestro proyecto. *Sin embargo aún tenemos que instalar los componentes expternos del proyecto.* Por un lado necesitamos instalar los componentes de node:
+
+```
+  npm install
+```
+
+y los componentes de Silex:
+
+```
+  php composer.phar install
+```
+
+ahora tenemos todo lo que necesitamos para comenzar nuestro primer proyecto
+
 
 ```
   grunt watch
