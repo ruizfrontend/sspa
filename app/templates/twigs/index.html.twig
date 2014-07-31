@@ -14,7 +14,7 @@
   {% include twigFolder ~ '/seo.html.twig' %}
 
   {# viewport info #}
-  <meta name="viewport" content="width=1100, user-scalable=no"/>
+  <meta name="viewport" content="width=1100, user-scalable=yes"/>
 
     {# Grunt compile files #}
   <!-- build:css bin/styles.min.css -->
@@ -43,7 +43,9 @@
   </main>
   <script>document.getElementById('seo-basico').innerHTML = '';</script>
 
-  <aside>
+    {# Aside Content, 
+    not crawled #}
+  <aside role="main" id="main">
     {% block content %}No content{% endblock %}
   </aside>
 
@@ -76,17 +78,12 @@
         {# data imports #}
     var proyData = proyData || {};
 
-    proyData['activeSect'] = {% if section is not defined %} "" {% else %} "{{ section }}" {% endif %};
-    proyData['subSect'] = {% if year is not defined %} "" {% else %}"{{ year }}"{% endif %};
-
     {% for elm in imports %} {# elm #}
       {% if elm.exposeJS == true %}
         proyData['{{ elm.title }}'] = {{ import[elm.title] | json_encode | raw }};
       {% endif %}
     {% endfor %}
 
-
-    {% block js %}{% endblock %}
   </script>
 
 </body>

@@ -1,0 +1,20 @@
+  {# drawing just one autoloader #}
+{% set section = sectionsLoader[actSection] %}
+
+{% for template in section['sections'] %}
+
+  {% if routing[template] is defined %}
+    {% set urlSect = routing[template]['url'] %}
+  {% else %}
+    {% set urlSect = null %}
+  {% endif %}
+
+  <div id="sct-{{ template }}"
+    class="bl-sct{% if template == activeRoute %} sct-act{% endif %}"
+    {% if urlSect %}data-url="{{ routing[template]['url'] }}"{% endif %}>
+
+    {% include section['url'] ~ '/' ~ template ~ '.html.twig'%}
+
+  </div>
+
+{% endfor %}

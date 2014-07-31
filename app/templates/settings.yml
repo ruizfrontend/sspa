@@ -1,26 +1,29 @@
 # general configuration
 debug: true
-base_url: /<%= initFolder %>/
+base_url: /newLabProy/
+enableMarkdown: true            # markdown processor
 
 # folders
-twigs: /twigs # main twigs folder
-sections: /twigs/sections # sections autoloader
+twigs: /twigs                   # main twigs folder
+log: /log.log                   # use 'false' to disable logger
 
-# base route -> required in seo.csv
-defaultRoute: home 
+# template autoloader
+autoloader:
+  autoload: /twigs/autoload
+  autoload2: /twigs/autoload2
 
-# markdown processor
-enableMarkdown: false
-
-# REQUIRED # import as it generates the routing system -> template at
+# REQUIRED # import as it generates the routing system and the seo contents
+    # the data uses this structure: https://docs.google.com/spreadsheet/ccc?key=0AtJGbTMFIBvQdDJKMzhmMHVZNGRhYmNSc2FyYWZTTlE&usp=sharing
 routing:
   url: routes.csv
   format: csv
   indexColumn: name
   exposeJS: false
   exposeTWIG: true
+  initialRoute: home
 
-# other data imports
+# data imports => use this to use external data files (csv and json) directly into your twig or js
+    # url can be a local or external file
 dataImports:
   songs:
     url: https://docs.google.com/spreadsheets/d/1ZTJOMeTe7gbgK3oq30kNycMwRAGHNpa9vkfiJ4MZmJA/export?gid=0&format=csv
@@ -29,6 +32,13 @@ dataImports:
     exposeJS: true
     exposeTWIG: true
     preprocess: myDataProcessorSample
+  seo:
+    url: routes.csv
+    format: csv
+    indexColumn:
+    exposeJS: true
+    exposeTWIG: true
+    preprocess:
 
 
 # advanced configuration

@@ -11,12 +11,15 @@ class ApplicationController
 
     public function indexAction(Request $request, Application $app)
     {
+        $route = $request->get("_route");
+
         $data = array(
           'twigFolder' => $app['config']['twigs'],
-          'twigsArray' => $app['sections'],
-          'sectionsFolder' => $app['sectionsFolder'],
-          'activeRoute' => $request->get("_route"),
-          'defaultRoute' => $app['config']['defaultRoute'],
+          'base_url' => $app['config']['base_url'],
+          'sectionsLoader' => $app['autoloader'],
+          'activeRoute' => $route,
+          'activeUrl' => $app['routing'][$route]['url'],
+          'initialRoute' => $app['config']['routing']['initialRoute'],
           'imports' => $app['dataLoaded.imports'],
           'routing' => $app['routing'],
           'import' => array()

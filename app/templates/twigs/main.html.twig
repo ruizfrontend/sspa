@@ -1,13 +1,15 @@
 {% extends twigFolder ~ '/index.html.twig' %}
 
 {% block content %}
-  <aside role="main" id="main">
+    
+    {# include all the templates configured in settings.html.yml #}
 
-    {% for twig in twigsArray %}
+  {% include twigFolder ~ '/autoloaders.html.twig' %}
 
-      {% include sectionsFolder ~ '/' ~ twig ~ '.html.twig' with {'this': twig} %}
+    {# or each loader individually
 
-    {% endfor %}
+  {% include twigFolder ~ '/autoloader.html.twig' with {'section': SectionName} %}
 
-  </aside>
+    #}
+
 {% endblock %}

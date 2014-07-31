@@ -44,6 +44,8 @@ class sectionsLoader {
         array_push($files, substr($fileName, 0, strlen($fileName) - strlen($twigFilePattern)));
       }
     }
+    
+    sort($files);
 
     return $app['sections'] = $files;
 
