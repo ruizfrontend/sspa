@@ -1,9 +1,30 @@
-﻿# Silex single page application yeoman generator [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+# SSPA: Silex single-page-application yeoman generator [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
-##Yeoman generator for a Silex single page application
+This project started as a simple generator with a few PHP functions to help systematize some back-end architecture for our proyects at [lab.rtve.es](http://lab.rtve.es), including common task like seo managing or data handling to work easily in collaboration with our team of journalists and creatives. For almost 20 projects in a year, the project has been growing, implementing new functionalities, until we decided to make it public so can help someone with the same needs. 
 
-Generador de proyectos para un proyecto genérico del lab. La versión actual monta Silex (versión simplificada de symfony), y todo lo necesario para generar la aplicación del cliente (Grunt, js, sass).
+But since the begining the main purspose subsist: **lay down a solid backend architecture so the team can focus on frontend tasks from the second one** 
 
+## Features
+- **Yeoman** (node.js) generator for easy deploy new versions of the framework.
+
+### Back end components
+- **Silex** PHP micro-framework based on **symfony** code, with some public and custom code:
+    - **Twig** as PHP template engine.
+    - **Monolog** logging library.
+    - **Markdown filter** for twig or PHP.
+    - **Silex routing system**.
+
+### Front end components
+- **Yeoman** generator.
+- **Bower** package manager.
+- **HTML5** 
+- **SASS**
+- **Grunt** task manager with some common tasks commnads predefined.
+
+## Demo
+Please, take a look at the demo to see some common patterns easily created with the framework.
+
+## Use
 El proyecto se generará en la carpeta en la que estés, y esta será tu carpeta de desarrollo, con su index.html y todo eso. A partir de esta carpeta se generarán las carpetas scss, js, img, fonts.... además de todos los archivos de configuración habituales.
 
 Tembién se generará la configuración para **grunt** con 4 tareas configuradas:
