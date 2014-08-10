@@ -8,9 +8,6 @@ Array
     [base_url] => /newLabProy/
     [debug] => 1
     [homeRoute] => home
-    [import] => Array
-        (
-        )
 
     [sectionsLoader] => Array
         (

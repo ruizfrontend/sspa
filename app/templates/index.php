@@ -49,7 +49,7 @@ $dataTwig = [
   'base_url' => $sspa['config']['base_url'],
   'debug' => $sspa['debug'],
   'homeRoute' => $sspa['config']['routing']['initialRoute'],
-  'import' => array(),
+  'imports' => array(),
 ];
 
 
