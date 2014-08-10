@@ -1,7 +1,7 @@
 {
-  "name": "spa-silex-project",
+  "name": "generator-sspa",
   "version": "0.1.0",
-  "description": "Project generated with the spa-silex-generator",
+  "description": "Silex-single-page-application yeoman generator",
   "main": "index.php",
   "author": "@ruizfrontend",
   "license": "MIT",
