@@ -21,7 +21,6 @@ $sspa->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/settings
 
 $sspa['debug'] = $sspa['config']['debug'];
 
-
   /* -- MONOLOG ----------------------------_- 
   // initiates logging system */
 if(isset($sspa['config']['log']) && $sspa['config']['log'] != false) {
@@ -50,6 +49,7 @@ $dataTwig = [
   'debug' => $sspa['debug'],
   'homeRoute' => $sspa['config']['routing']['initialRoute'],
   'imports' => array(),
+  'ajaxPath' => $sspa['config']['ajaxPath'],
 ];
 
 
@@ -118,7 +118,7 @@ foreach ($sspa['dataLoader.seo'] as $key => $value) {
   if(!isset($value['url']) || $value['url'] == ''){
     $value['url'] = '/';
   }
-  $routes[$value['tpl']] = $sspa['config']['twigs'] . '/' . $key . '.html.twig';
+  $routes[$value['url']] = $sspa['config']['twigs'] . '/' . $key . '.html.twig';
   $routes[$value['url']] = $value;
 }
 
@@ -221,22 +221,27 @@ foreach ($sspa['routing'] as $title => $url) {
       $twigData['url'] = $url;
       $twigData['seoData'] = $sspa['routing'][$url];
 
+      $tpl = $sspa['config']['twigs'] . '/main.html.twig';
+
       if(isset($sspa['routing'][$url]['routeName'])) {
 
         $twigData['routeData'] = $sspa['routing'][$url]['routeData'];
 
           // ajax request
         if(isset($sspa['routing'][$url]['ajax'])) {
-          return $sspa['twig']->render($sspa['routing'][$url]['tpl'], $twigData);
-        } else {
-          return $sspa['twig']->render($sspa['config']['twigs'] . '/main.html.twig', $twigData);
+          $tpl = $sspa['routing'][$url]['tpl'];
         }
+
+      } else {
+
+        $twigData['routeData'] = null;
 
       }
 
-      $twigData['routeData'] = null;
+      if($sspa['debug'] && $request->query->has('dR')) { print_r($sspa['routing']); die(); } // dump the routes
+      if($sspa['debug'] && $request->query->has('dD')) { print_r($twigData); die(); } // dump the twig data
 
-      return $sspa['twig']->render($sspa['config']['twigs'] . '/main.html.twig', $twigData);
+      return $sspa['twig']->render($tpl, $twigData);
     }
   );
 }
