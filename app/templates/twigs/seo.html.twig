@@ -1,35 +1,14 @@
-{% if routing[activeRoute] is defined %}
-
-  <title>{{ routing[activeRoute]['title'] }}</title>
-  <meta name="description" content="{{ routing[activeRoute]['description'] }}">
-  <meta name="Keywords" content="{{ routing[activeRoute]['keywords'] }}">
-  <meta name="author" content="lab.rtve.es">
-  <meta property="og:title" content="{{ routing[activeRoute]['title'] }}">
-  <meta property="og:description" content="{{ routing[activeRoute]['description'] }}">
-  <meta property="og:url" content='http://lab.rtve.es{{ base_url }}{{ activeUrl }}'>
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@rtve">
-  <meta name="twitter:creator" content="@lab_rtvees">
-  <meta name="twitter:title" content="{{ routing[activeRoute]['title'] }}">
-  <meta name="twitter:description" content="{{ routing[activeRoute]['description'] }}">
-  <meta property="og:image" content="http://lab.rtve.es{{ base_url }}img/seo/{{ routing[activeRoute]['seoImg'] }}.jpg">
-  <meta name="twitter:image" content="http://lab.rtve.es{{ base_url }}img/seo/{{ routing[activeRoute]['seoImg'] }}.jpg">
-
-{% else %}
-
-  <title>{{ routing[initialRoute]['title'] }}</title>
-  <meta name="description" content="{{ routing[initialRoute]['description'] }}">
-  <meta name="Keywords" content="{{ routing[initialRoute]['keywords'] }}">
-  <meta name="author" content="lab.rtve.es">
-  <meta property="og:title" content="{{ routing[initialRoute]['title'] }}">
-  <meta property="og:description" content="{{ routing[initialRoute]['description'] }}">
-  <meta property="og:url" content='http://lab.rtve.es{{ base_url }}'>
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@rtve">
-  <meta name="twitter:creator" content="@lab_rtvees">
-  <meta name="twitter:title" content="{{ routing[initialRoute]['title'] }}">
-  <meta name="twitter:description" content="{{ routing[initialRoute]['description'] }}">
-  <meta property="og:image" content="http://lab.rtve.es{{ base_url }}img/seo/{{ routing[initialRoute]['seoImg'] }}.jpg">
-  <meta name="twitter:image" content="http://lab.rtve.es{{ base_url }}img/seo/{{ routing[initialRoute]['seoImg'] }}.jpg">
-
-{% endif %}
+<title>{{ seoData['title'] }}</title>
+<meta name="description" content="{{ seoData['description'] }}">
+<meta name="Keywords" content="{{ seoData['keywords'] }}">
+<meta name="author" content="lab.rtve.es">
+<meta property="og:title" content="{{ seoData['title'] }}">
+<meta property="og:description" content="{{ seoData['description'] }}">
+<meta property="og:url" content='http://lab.rtve.es{{ base_url }}{{ url }}'>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@rtve">
+<meta name="twitter:creator" content="@lab_rtvees">
+<meta name="twitter:title" content="{{ seoData['title'] }}">
+<meta name="twitter:description" content="{{ seoData['description'] }}">
+<meta property="og:image" content="http://lab.rtve.es{{ base_url }}img/seo/{{ seoData['seoImg'] }}.jpg">
+<meta name="twitter:image" content="http://lab.rtve.es{{ base_url }}img/seo/{{ seoData['seoImg'] }}.jpg">

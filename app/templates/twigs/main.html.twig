@@ -1,5 +1,13 @@
 {% extends twigFolder ~ '/index.html.twig' %}
 
+{% block seoHead %}
+  {% include twigFolder ~ '/seo.html.twig' %}
+{% endblock %}
+
+{% block seo %}
+  seo
+{% endblock %}
+
 {% block content %}
     
     {# include all the templates configured in settings.html.yml #}

@@ -2,6 +2,7 @@
 debug: true
 base_url: /newLabProy/
 enableMarkdown: true            # markdown processor
+ajaxPath: /q                    # path added to the url to get ajax templates
 
 # folders
 twigs: /twigs                   # main twigs folder
@@ -29,17 +30,12 @@ dataImports:
     url: https://docs.google.com/spreadsheets/d/1ZTJOMeTe7gbgK3oq30kNycMwRAGHNpa9vkfiJ4MZmJA/export?gid=0&format=csv
     format: csv
     indexColumn:
+    routing:
+      ajax: true
+      route: obra
+      name: TITULAR
+      title: TITULAR
+      url: TITULAR
     exposeJS: true
     exposeTWIG: true
     preprocess: myDataProcessorSample
-  seo:
-    url: routes.csv
-    format: csv
-    indexColumn:
-    exposeJS: true
-    exposeTWIG: true
-    preprocess:
-
-
-# advanced configuration
-defaultControler: Controller\ApplicationController::indexAction

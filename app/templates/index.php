@@ -2,6 +2,10 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+
+
+use Silex\Application;
 
 use Nicl\Silex\MarkdownServiceProvider;
 use Monolog\Logger;
@@ -10,136 +14,276 @@ use Services\dataLoader;
 use Services\sectionsLoader;
 
 
-$app = new Silex\Application();
+$sspa = new Silex\Application();
 
-$app->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/settings.yml'));
-
-
-$app['debug'] = $app['config']['debug'];
+$sspa->register(new DerAlex\Silex\YamlConfigServiceProvider(__DIR__ . '/settings.yml'));
 
 
-  // Logger configuration
-if(isset($app['config']['log']) && $app['config']['log'] != false) {
+$sspa['debug'] = $sspa['config']['debug'];
 
-  $app->register(new Silex\Provider\MonologServiceProvider(), array(
-      'monolog.logfile' => __DIR__.$app['config']['log']
+
+  /* -- MONOLOG ----------------------------_- 
+  // initiates logging system */
+if(isset($sspa['config']['log']) && $sspa['config']['log'] != false) {
+
+  $sspa->register(new Silex\Provider\MonologServiceProvider(), array(
+      'monolog.logfile' => __DIR__.$sspa['config']['log']
   ));
 
-  $app['monolog']->addDebug('----BOOTSTRAPING APP----');
+  $sspa['monolog']->addDebug('----BOOTSTRAPING APP----');
 }
 
+  /* -- TWIG ----------------------------_- 
+  // register template processor */
+$sspa->register(new Silex\Provider\TwigServiceProvider(), array( 'twig.path' => __DIR__.'/', ));
 
-  // template autoloader configuration
-if(isset($app['config']['autoloader'])) {
+$sspa['twig'] = $sspa->share($sspa->extend('twig', function ($twig, $sspa) {
+    /* sample Twig filter
+    $twig->addExtension(new Services\twigYearsToUrl($sspa));*/
+    return $twig; 
+}));
 
-  $app['sectionsLoader'] = function () { return new sectionsLoader(); };
+  // basic data required to generate the templates
+$dataTwig = [
+  'twigFolder' => $sspa['config']['twigs'],
+  'base_url' => $sspa['config']['base_url'],
+  'debug' => $sspa['debug'],
+  'homeRoute' => $sspa['config']['routing']['initialRoute'],
+  'import' => array(),
+];
+
+
+  /* -- MARKDOWN ----------------------------_- 
+  // register mardown filter so you can use like in twig: 
+  // {{ '**Bold text**'| markdown }} 
+  // or this in php with dflydev\markdown\MarkdownParser 
+  // more info: https://github.com/nicl/Silex-Markdown;
+  */
+if($sspa['config']['enableMarkdown']) {
+  $sspa->register(new MarkdownServiceProvider());
+}
+
+  /* -- AUTOLOADER ----------------------------_- 
+  // Loads automatically a folder of templates, and user ther template name
+  // to bind routes defined in the routing file */
+if (isset($sspa['config']['autoloader'])) {
+
+  $sspa['sectionsLoader'] = function () { return new sectionsLoader(); };
   $autoloader = array();
 
-  foreach ($app['config']['autoloader'] as $title => $url) {
+  foreach ($sspa['config']['autoloader'] as $title => $url) {
 
     $autoloader[$title] = array('url' => $url, 'sections' => null);
 
-    $autoloader[$title]['sections'] = $app['sectionsLoader']->getSections($app, __DIR__ . $url);
+    $autoloader[$title]['sections'] = $sspa['sectionsLoader']->getSections($sspa, __DIR__ . $url);
 
   }
 
-  $app['autoloader'] = $autoloader;
+  $dataTwig['sectionsLoader'] = $autoloader;
 
-}
+} else { $dataTwig['sectionsLoader'] = null; }
 
 
-// Initiate external data loading
+  /* -- DATALOADER ----------------------------_- 
+  // Loads external resources (locally or remote), and allows you
+  // to configure dynamic routes for them based on the fields you choose. 
+  // Both 'routing' and 'dataloader' works simillar, but 'routing' is required 
+  
+  // @defines $sspa['routing'] => array of routes 
+  */
 $imports = array();
-$app['dataLoader'] = function () { return new dataLoader(); };
+$sspa['dataLoader'] = function () { return new dataLoader(); };
 
 
     // load routing data (REQUIRED)
-if(!isset($app['config']['routing']) || !isset($app['config']['routing'])) {
-  $app->abort(404, "No routing file found. Aborting");
+if(!isset($sspa['config']['routing']) || !isset($sspa['config']['routing'])) {
+  $sspa->abort(404, "No routing file found. Aborting");
 }
 
-$column = isset($app['config']['routing']['indexColumn']) ? $app['config']['routing']['indexColumn'] : null;
+$column = isset($sspa['config']['routing']['indexColumn']) ? $sspa['config']['routing']['indexColumn'] : null;
 
-$app['dataLoader']->getData($app['config']['routing']['url'], 'seo', $app, $app['config']['routing']['format'], $column); // -> nos genera $app['dataLoader.seo'] 
+$sspa['dataLoader']->getData( // -> nos genera $sspa['dataLoader.seo'] 
+  $sspa['config']['routing']['url'],
+  'seo',
+  $sspa,
+  $sspa['config']['routing']['format'],
+  $column
+);
 
-if(isset($app['config']['routing']['preprocess'])) {
-  $app['dataLoader.'.$title] = $app['config']['routing']['preprocess']($app['dataLoader.seo']);
+if(isset($sspa['config']['routing']['preprocess'])) {
+  $sspa['dataLoader.'.$title] = $sspa['config']['routing']['preprocess']($sspa['dataLoader.seo']);
 }
 
-$app['routing'] = $app['dataLoader.seo'];
+foreach ($sspa['dataLoader.seo'] as $key => $value) {
+  if(!isset($value['url']) || $value['url'] == ''){
+    $value['url'] = '/';
+  }
+  $routes[$value['tpl']] = $sspa['config']['twigs'] . '/' . $key . '.html.twig';
+  $routes[$value['url']] = $value;
+}
 
 
       // load other data import
-if(count($app['config']['dataImports'])) {
-
-  foreach ($app['config']['dataImports'] as $title => $import) {
+if(isset($sspa['config']['dataImports'])) {
+  
+  foreach ($sspa['config']['dataImports'] as $title => $import) {
 
     $column = isset($import['indexColumn']) ? $import['indexColumn'] : null;
 
-    $app['dataLoader']->getData($import['url'], $title, $app, $import['format'], $column); // -> nos genera $app['dataLoader.seo'] 
+    $sspa['dataLoader']->getData($import['url'], $title, $sspa, $import['format'], $column); // -> nos genera $sspa['dataLoader.seo'] 
 
-    if(isset($import['preprocess'])) {
-      if(!function_exists($import['preprocess'])) {
-        $funct = $import['preprocess'];
-        $app->abort(404, "Preprocess $funct function not found. Aborting");
-      }
-
-      $app['dataLoader.'.$title] = $import['preprocess']($app['dataLoader.'.$title]);
+    if(isset($import['preprocess']) && function_exists($import['preprocess'])) {
+      $sspa['dataLoader.'.$title] = $import['preprocess']($sspa['dataLoader.'.$title]);
     }
 
       // save the reference of the imported files to easily inject it at the controller
     array_push($imports, array(
       'title' => $title, 
       'arrayName' => 'dataLoader.'.$title, 
-      'exposeJS' => isset($import['exposeJS']) ? $import['exposeJS'] : false,
+      'exposeJS' => isset($import['exposeJS']) ? $import['exposeJS'] : false, // TODO: check this default values
       'exposeTWIG' => isset($import['exposeTWIG']) ? $import['exposeTWIG'] : true
     ));
+
+      // adds the routes to the routing array so we can use them
+    if(isset($import['routing'])) {
+
+      foreach ($sspa['dataLoader.'.$title] as $row) {
+
+        $url = '/' . $title . '/' . processUrl($row[$import['routing']['url']]);
+
+          // notify repeated urls
+        if(isset($routes[$url])) {
+
+          $sspa['monolog']->addDebug('[sspa] Duplicated route found: '.$url);
+
+        } else {
+
+          $routes[$url] = array (
+            'routeName' => $title,
+            'routeData' => $row,
+            'tpl' => $sspa['config']['twigs'] . '/' . $title . '.html.twig',
+
+            'name' => $row[$import['routing']['name']],
+            'title' => 'Sección ' . $row[$import['routing']['title']],
+            'shortTitle' => $row[$import['routing']['name']],
+            'description' => $row[$import['routing']['url']],
+            'keywords' => $row[$import['routing']['url']],
+            'seoImg' => $row[$import['routing']['url']],
+            'ShareText' => $row[$import['routing']['url']],
+          );
+
+          if(isset($import['routing']['ajax']) && $import['routing']['ajax'] == true) {
+
+            $urlAjax = $sspa['config']['ajaxPath'] . '/' . $title . '/' . processUrl($row[$import['routing']['url']]);
+
+            $routes[$urlAjax] = $routes[$url];
+            $routes[$urlAjax]['ajax'] = true;
+
+          }
+
+        }
+
+      }
+    }
   }
 
-  $app['dataLoaded.imports'] = $imports;
+  foreach ($imports as $key => $value) {
+    if($value['exposeTWIG'] || $value['exposeJS']) {
+      $dataTwig['imports'][$value['title']] = $sspa[$value['arrayName']];
+    }
+  };
+  
+  $dataTwig['imports'][$value['title']] = $sspa[$value['arrayName']];
+  $dataTwig['importInfo'] = $imports;
+} else {
+  $dataTwig['importInfo']= null;
 }
 
-
-// LOAD TWIG
-$app->register(new Silex\Provider\TwigServiceProvider(), array( 'twig.path' => __DIR__.'/', ));
-
-$app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
-    /* sample Twig filter
-    $twig->addExtension(new Services\twigYearsToUrl($app));*/
-    return $twig; 
-}));
+  /* -- Final DATA ----------------------------_- */
+$sspa['routing'] = $routes;
+$sspa['twigData'] = $dataTwig;
 
 
-  // LOAD MARKDOWN
-if($app['config']['enableMarkdown']) {
-  $app->register(new MarkdownServiceProvider());
+  // PROCESS REQUEST AND GENERATE OUTPUT
+$sspa->register(new Silex\Provider\UrlGeneratorServiceProvider());
+
+foreach ($sspa['routing'] as $title => $url) {
+    // the routeing here!
+  $sspa->get(
+    $title,
+    function(Request $request, Application $sspa) {
+
+        // pass the data from the request to de twig data
+      $twigData = $sspa['twigData'];
+      $url = $request->getPathInfo();
+      $twigData['url'] = $url;
+      $twigData['seoData'] = $sspa['routing'][$url];
+
+      if(isset($sspa['routing'][$url]['routeName'])) {
+
+        $twigData['routeData'] = $sspa['routing'][$url]['routeData'];
+
+          // ajax request
+        if(isset($sspa['routing'][$url]['ajax'])) {
+          return $sspa['twig']->render($sspa['routing'][$url]['tpl'], $twigData);
+        } else {
+          return $sspa['twig']->render($sspa['config']['twigs'] . '/main.html.twig', $twigData);
+        }
+
+      }
+      
+      return $sspa['twig']->render($sspa['config']['twigs'] . '/main.html.twig', $twigData);
+    }
+  );
 }
 
-
-  // SET ROUTING
-$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
-
-foreach ($app['routing'] as $title => $url) {
-  $app->get($url['url'], $app['config']['defaultControler'])->bind($title);
-}
-
-
-  // ERROR PAGE -> TODO -> bring better solution
-$app->error(function (\Exception $e, $code) use($app) {
-  if(!$app['debug']) {
-    return new Response($app['twig']->render( $app['config']['twigs'].'/error.html.twig'), $code);
+  // ERROR PAGE -> not found
+$sspa->error(function (\Exception $e, $code) use($sspa) {
+  if(!$sspa['debug']) {
+    return new Response($sspa['twig']->render( $sspa['config']['twigs'].'/error.html.twig'), $code);
   }
 });
 
-$app->run();
+$sspa->run();
 
 
-/* ------------------------ */
-    // sample data preprocessing function (defined in the default settings.yml)
-    // ERASE ME
-function myDataProcessorSample($data) {
+/* ------------------------ 
+    // Traduce los nombres de la obra para ser usadas como url
+function workProcessor($data) {
 
-  //print_R($data); die();
+  foreach ($data as $key => $value) {
+    $data[$key]['url'] = processUrl($value['TITULAR']);
+  }
 
   return $data;
 }
+function artistProcessor($data) {
+
+  foreach ($data as $key => $value) {
+    $data[$key]['url'] = processUrl($value['name']);
+
+    $links = str_replace(" ","",$data[$key]['links']);
+    $links = split(',', $links);
+    $data[$key]['links'] = $links;
+  }
+
+  return $data;
+}
+*/
+function processUrl($s) {
+  $s = str_replace("Ñ","n",$s);
+  $s = str_replace("Á","a",$s);
+  $s = str_replace("É","e",$s);
+  $s = str_replace("Í","i",$s);
+  $s = str_replace("Ó","o",$s);
+  $s = str_replace("Ú","u",$s);
+  $s = str_replace("ñ","n",$s);
+  $s = str_replace("á","a",$s);
+  $s = str_replace("é","e",$s);
+  $s = str_replace("í","i",$s);
+  $s = str_replace("ó","o",$s);
+  $s = str_replace("ú","u",$s);
+  $s = str_replace(" ","-",$s);
+  $s = strtolower($s);
+  return $s;
+};

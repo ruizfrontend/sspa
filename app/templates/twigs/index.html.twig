@@ -10,8 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta http-equiv="Content-Language" content="es-es">
 
-  {# Soe template #}
-  {% include twigFolder ~ '/seo.html.twig' %}
+  {% block seoHead %}{% endblock %}
 
   {# viewport info #}
   <meta name="viewport" content="width=1100, user-scalable=yes"/>
@@ -66,8 +65,7 @@
     if(!labTools) var labTools = {};
 
     if(labTools.url) {
-      labTools.url.data.baseUrl = '';
-      labTools.url.data.baseUrlNO = '{{ app.config.base_url }}';
+      labTools.url.data.baseUrl = {{ base_url }};
       labTools.url.data.ga = {% if app.config.debug %}false{% else %}true{% endif %};
     }
 
@@ -78,9 +76,9 @@
         {# data imports #}
     var proyData = proyData || {};
 
-    {% for elm in imports %} {# elm #}
-      {% if elm.exposeJS == true %}
-        proyData['{{ elm.title }}'] = {{ import[elm.title] | json_encode | raw }};
+    {% for elm in importInfo %}
+      {% if elm.exposeJS is defined and elm.exposeJS == true %}
+        proyData['{{ elm.title }}'] = {{ imports[elm.title] | json_encode | raw }};
       {% endif %}
     {% endfor %}
 
