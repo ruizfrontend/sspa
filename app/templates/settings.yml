@@ -26,16 +26,16 @@ routing:
 # data imports => use this to use external data files (csv and json) directly into your twig or js
     # url can be a local or external file
 dataImports:
-  songs:
-    url: https://docs.google.com/spreadsheets/d/1ZTJOMeTe7gbgK3oq30kNycMwRAGHNpa9vkfiJ4MZmJA/export?gid=0&format=csv
+  dinamicSections:
+    url: https://docs.google.com/spreadsheet/pub?key=0AtJGbTMFIBvQdEFHTExYZmFLXzg1WTFaUWNQd3I2ZFE&single=true&gid=0&output=csv
     format: csv
     indexColumn:
     routing:
-      ajax: true
-      route: obra
-      name: TITULAR
-      title: TITULAR
-      url: TITULAR
+      ajax: false
+      route: sections
+      name: title
+      title: intro
+      url: title
     exposeJS: true
     exposeTWIG: true
     preprocess: myDataProcessorSample

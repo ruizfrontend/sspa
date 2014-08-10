@@ -9,8 +9,12 @@
 {% endblock %}
 
 {% block content %}
-    
-    {# include all the templates configured in settings.html.yml #}
+
+
+  {% include twigFolder ~ '/dAutoloaders.html.twig' %}
+
+
+    {# You can include all the templates configured in settings.html.yml together #}
 
   {% include twigFolder ~ '/autoloaders.html.twig' %}
 

@@ -10,7 +10,7 @@
     {% endif %}
 
     <div id="sct-{{ template }}"
-      class="bl-sct{% if template == activeRoute %} sct-act{% endif %}"
+      class="bl-sct{% if template == seoData['name'] %} sct-act{% endif %}"
       {% if urlSect %}data-url="{{ routing[template]['url'] }}"{% endif %}>
 
       {% include section['url'] ~ '/' ~ template ~ '.html.twig'%}

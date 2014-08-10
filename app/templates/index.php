@@ -141,7 +141,10 @@ if(isset($sspa['config']['dataImports'])) {
       'title' => $title, 
       'arrayName' => 'dataLoader.'.$title, 
       'exposeJS' => isset($import['exposeJS']) ? $import['exposeJS'] : false, // TODO: check this default values
-      'exposeTWIG' => isset($import['exposeTWIG']) ? $import['exposeTWIG'] : true
+      'exposeTWIG' => isset($import['exposeTWIG']) ? $import['exposeTWIG'] : true,
+      'routing' => isset($import['routing']) ? true : false,
+      'path' => isset($import['routing']['url']) ? $import['routing']['url'] : false,
+      'route' => isset($import['routing']['route']) ? $import['routing']['route'] : false,
     ));
 
       // adds the routes to the routing array so we can use them
@@ -203,7 +206,6 @@ if(isset($sspa['config']['dataImports'])) {
 $sspa['routing'] = $routes;
 $sspa['twigData'] = $dataTwig;
 
-
   // PROCESS REQUEST AND GENERATE OUTPUT
 $sspa->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
@@ -231,7 +233,9 @@ foreach ($sspa['routing'] as $title => $url) {
         }
 
       }
-      
+
+      $twigData['routeData'] = null;
+
       return $sspa['twig']->render($sspa['config']['twigs'] . '/main.html.twig', $twigData);
     }
   );
@@ -247,12 +251,12 @@ $sspa->error(function (\Exception $e, $code) use($sspa) {
 $sspa->run();
 
 
-/* ------------------------ 
+/* ------------------------ */
     // Traduce los nombres de la obra para ser usadas como url
-function workProcessor($data) {
+function myDataProcessorSample($data) {
 
   foreach ($data as $key => $value) {
-    $data[$key]['url'] = processUrl($value['TITULAR']);
+    // Process here every row of your data
   }
 
   return $data;
@@ -269,7 +273,7 @@ function artistProcessor($data) {
 
   return $data;
 }
-*/
+
 function processUrl($s) {
   $s = str_replace("Ñ","n",$s);
   $s = str_replace("Á","a",$s);

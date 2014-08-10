@@ -1,0 +1,18 @@
+
+{% for importData in importInfo %}
+
+  {% if importData['routing'] %}
+    {% for item in imports[importData['title']] %}
+      
+      <div id="sct-{{ importData['title'] }}-{{ loop.index0 }}"
+        class="bl-sct{% if routeData == item %} sct-act{% endif %}"
+        data-url="{{ importData['route'] }}/{{ importData['path'] }}">
+
+        {% include twigFolder ~ '/' ~ importData['title'] ~ '.html.twig' with {'routeData': item} %}
+
+      </div>
+
+    {% endfor %}
+  {% endif %}
+
+{% endfor %}
