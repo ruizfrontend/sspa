@@ -71,3 +71,8 @@ Una vez hecho esto, grunt esperará a que se cambien los archivos de la carpeta 
   grunt compileimg
 ```
 
+## Extra info
+
+- [Data structure](data-structure.md)
+
+
