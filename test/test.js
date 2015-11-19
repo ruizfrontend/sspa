@@ -36,7 +36,10 @@ describe('Webapp generator test', function () {
       'app/favicon.ico',
       'app/robots.txt',
       'app/index.html',
-      'app/scripts/main.coffee',
+      'app/scripts/main.ckkkkkk
+      
+      
+      offee',
       'app/styles/main.scss'
     ];
 
